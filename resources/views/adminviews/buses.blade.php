@@ -9,6 +9,84 @@
 <body>
 	<section>
 		<article>
+			<div id="overlay" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
+				<div class="bg-gray-200">
+					<div class="flex justify-between items-center">
+						<h4 class="text-lg font-semibold">My Profile</h4>
+						<svg id="close-profile-modal" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<div>
+						<label>Name</label>	
+						<input type="text" name="name" value="Jane Mbiru" readonly>
+						<br>
+						<label>Name</label>	
+						<input type="text" name="name" value="Jane Mbiru" readonly>
+						<br>
+						<label>Name</label>	
+						<input type="text" name="name" value="Jane Mbiru" readonly>
+						<br>						
+					</div>
+					<div class="flex justify-center items-center">
+						<button>Edit</button>
+					</div>
+				</div>        
+    		</div>
+    		<div id="edit_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
+				<div class="bg-gray-50 p-3 rounded-lg">
+					<div class="flex justify-between items-center">
+						<h4 class="text-lg font-semibold">Edit Bus</h4>
+						<svg onclick="closeEditModal()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<div class="grid grid-cols-6 gap-6 p-4">
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="plate" class="block text-sm font-medium text-gray-700">Number Plate</label>
+			                <input type="text" name="plate" id="plate" value="KBC 345T" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity</label>
+			                <input type="text" name="capacity" id="capacity" value="33" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
+			                <input type="text" name="model" id="model" value="Scania" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>				
+					</div>
+					<div class="flex justify-center items-center">
+						<button class="bg-gray-900 px-3 py-1 text-gray-50 rounded">Edit</button>
+					</div>
+				</div>        
+    		</div>
+    		<div id="add_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
+				<div class="bg-gray-50 p-3 rounded-lg">
+					<div class="flex justify-between items-center">
+						<h4 class="text-lg font-semibold">Add Bus</h4>
+						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<div class="grid grid-cols-6 gap-6 p-4">
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="plate" class="block text-sm font-medium text-gray-700">Number Plate</label>
+			                <input type="text" name="plate" id="plate" placeholder="KBC 345T" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity</label>
+			                <input type="number" min="0" name="capacity" id="capacity" placeholder="33" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
+			                <input type="text" name="model" id="model" placeholder="Scania" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>			
+					</div>
+					<div class="flex justify-center items-center">
+						<button class="bg-gray-900 px-3 py-1 text-gray-50 rounded">Add</button>
+					</div>
+				</div>        
+    		</div>
 			<div class="box-border p-2 m-1 bg-red-900 rounded-lg">
                 <center class="text-xl cursor-default ">Buses</center>
             </div>
@@ -17,16 +95,16 @@
 			          <thead class="bg-gray-50">
 			            <tr>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-			                Name
+			                Number
 			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-			                Title
+			                Number Plate
 			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-			                Status
+			                Capacity
 			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-			                Role
+			                Model
 			              </th>
 			              <th scope="col" class="relative px-6 py-3">
 			                <span class="sr-only">Edit</span>
@@ -37,33 +115,76 @@
 			            <tr>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <div class="flex items-center">
-			                  <div class="flex-shrink-0 h-10 w-10">
-			                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
-			                  </div>
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-			                      Jane Cooper
-			                    </div>
-			                    <div class="text-sm text-gray-500">
-			                      jane.cooper@example.com
+			                      1
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-			                <div class="text-sm text-gray-500">Optimization</div>
+			                <div class="text-sm text-gray-900">KBC 345T</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-			                  Active
+			                  33
 			                </span>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                Admin
+			                Scania
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold">
+			                <button onclick="editModal()" class="text-indigo-600 hover:text-indigo-900">Edit</button>
+			              </td>
+			            </tr>
+			            <tr>
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <div class="flex items-center">
+			                  <div class="ml-4">
+			                    <div class="text-sm font-medium text-gray-900">
+			                      2
+			                    </div>
+			                  </div>
+			                </div>
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <div class="text-sm text-gray-900">KBC 345T</div>
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+			                  33
+			                </span>
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			                Scania
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+			                <button onclick="editModal()" class="text-indigo-600 hover:text-indigo-900">Edit</button>
+			              </td>
+			            </tr>
+			            <tr>
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <div class="flex items-center">
+			                  <div class="ml-4">
+			                    <div class="text-sm font-medium text-gray-900">
+			                      3
+			                    </div>
+			                  </div>
+			                </div>
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <div class="text-sm text-gray-900">KBC 345T</div>
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+			                  33
+			                </span>
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			                Scania
+			              </td>
+			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+			                <button onclick="editModal()" class="text-indigo-600 hover:text-indigo-900">Edit</button>
 			              </td>
 			            </tr>
 
@@ -71,8 +192,11 @@
 			          </tbody>
 			        </table>
 			</div>
+			<button onclick="addModal()" class="absolute right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-900 rounded-lg">Add</button>
 		</article>
 	</section>
+
+<script src="{{url('/js/components.js')}}"></script>
 
 </body>
 </html>

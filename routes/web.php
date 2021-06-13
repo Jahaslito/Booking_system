@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,11 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
+Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('drivers');
+Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
+Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
+Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');

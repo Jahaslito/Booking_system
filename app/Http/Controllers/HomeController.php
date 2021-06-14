@@ -53,4 +53,7 @@ class HomeController extends Controller
     public function trips(){
         return view('adminviews.trips');
     }
+    public function booking(){
+        return view('customerViews.booking');
+    }
 }

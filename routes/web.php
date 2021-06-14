@@ -24,7 +24,7 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+//Route::get('/login', [HomeController::class, 'login_register'])->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
@@ -32,3 +32,4 @@ Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('dri
 Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
 Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
 Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
+Route::get('/booking',[HomeController::class, 'booking'])->name('booking');

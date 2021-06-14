@@ -24,7 +24,7 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+//Route::get('/login', [HomeController::class, 'login_register'])->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');

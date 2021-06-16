@@ -12,28 +12,61 @@
 </head>
 
 <body class="content-start w-full h-full p-px bg-gray-50">
-    <div class="container w-full h-full ">
+    <nav class="flex flex-wrap items-center p-3 bg-red-600">
+      <a href="/home" class="inline-flex items-center p-2 mr-4">
+        
+        <span class="text-xl font-bold tracking-wide text-white uppercase"
+          >Logo</span
+        >
+      </a>
+      <button
+        class="inline-flex p-3 ml-auto text-white rounded outline-none hover:bg-red-600 lg:hidden hover:text-white nav-toggler"
+        data-target="#navigation"
+      >
+        <i class="text-xl text-white fa fa-bars"></i>
+      </button>
+      <div
+        class="hidden w-full top-navbar lg:inline-flex lg:flex-grow lg:w-auto"
+        id="navigation"
+      >
+        <div
+          class="flex flex-col items-start w-full text-md lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center lg:h-auto"
+        >
+          <a
+            href="/home"
+            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
+          >
+            <span>Home</span>
+          </a>
+          <a
+            href="#"
+            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
+          >
+            <span>About Us</span>
+          </a>
+          <a
+            href="#"
+            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
+          >
+            <span>Contact Us</span>
+          </a>
+          
+        </div>
+      </div>
+    </nav>
+    <div class="container content-center w-full h-full ">
         <nav
-            class="flex flex-col w-full px-6 py-2 mb-16 font-sans text-center bg-white sm:flex-row sm:text-left sm:justify-between sm:items-baseline">
-            <div class="mb-2 sm:mb-0 inner">
+            class="flex flex-col w-full px-6 py-2 mb-6 font-sans text-center bg-white sm:flex-row sm:text-left sm:justify-center sm:items-baseline">
 
-                <a href="/home"
-                    class="font-sans text-2xl font-bold no-underline text-grey-darkest hover:text-blue-dark">Logo</a><br>
-                <!-- <span class="text-xs text-grey-dark">Beautiful New Tagline</span> -->
+            <div class="self-center font-mono no-underline sm:mb-0">
 
-            </div>
-
-            <div class="self-center sm:mb-0">
-
-                <a href="#" class="px-1 ml-2 text-black no-underline text-md hover:text-blue-dark">Link1</a>
-                <a href="#" class="px-1 ml-2 no-underline text-md text-grey-darker hover:text-blue-dark">Link2</a>
-                <a href="#" class="px-1 ml-2 no-underline text-md text-grey-darker hover:text-blue-dark">Link3</a>
+                <p class="italic">Efficiently fast, your safest option </p>
 
             </div>
         </nav>
         <div class="content-center w-full mb-20">
-            <div class="flex flex-row justify-center w-full space-x-5">
-                <div class="searchFrom">
+            <div class="content-center block w-auto pl-16 space-y-5 bg-red-600 rounded-lg shadow-md bg-opacity-30 sm:items-center sm:pl-0 sm:justify-center sm:h-60 sm:w-full sm:space-x-5 sm:space-y-0 sm:flex sm:flex-row">
+                <div class=" searchFrom">
                     <input type="text"
                         class="p-2 pl-8 bg-gray-200 border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         placeholder="From" value="" />
@@ -48,7 +81,7 @@
                         class="p-2 pl-8 bg-gray-200 border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         placeholder="Date" />
                 </div>
-                <div class="searchBus">
+                <div class="justify-center searchBus">
                     <button
                         class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search
                         Bus</button>
@@ -56,37 +89,39 @@
             </div>
 
         </div>
-        <div class="content-center w-full px-16">
-            <div class="justify-center pl-16 ">
-                <h1 class="text-3xl ml-96">Search Results</h1>
-                <div class="flex flex-row h-auto p-8 bg-white shadow-lg">
+        <div class="content-start w-auto h-auto px-0 sm:px-0 md:px-16 ">
+            <div class="justify-center sm:px-0 md:px-16">
+                <div class="w-auto md:content-center">
+                    <h1 class="mt-12 text-2xl sm:text-3xl sm:ml-48 md:ml-96 ">Search Results</h1>
+                </div>
+                <div class="block w-auto h-auto p-8 space-y-4 bg-white shadow-lg sm:flex sm:flex-row sm:space-y-0">
                     <img src="{{url('/images/bus.jpg')}}" alt="Bus Image" class="w-auto h-24">
-                    <div class="ml-16">
-                        <h2 class="w-auto mb-4 text-2xl">Nairobi - Kisumu</h2>
+                    <div class="sm:ml-8 md:ml-16">
+                        <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">Nairobi - Kisumu</h2>
                         <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
                             <i class="w-6 pt-2 mx-1 text-red-600 fa fa-map-marker"></i>
-                            <h3 class="text-xl text-red-600">Boarding Place</h3>
+                            <h3 class="text-red-600 sm:text-sm md:text-xl">Boarding Place</h3>
                         </div>
                         <p>CBD</p>
 
                     </div>
-                    <div class="content-start block w-auto ml-16 ">
+                    <div class="content-start block w-auto sm:ml-8 md:ml-16 ">
                         <div class="block">
-                            <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
+                            <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
                                 <i class="w-6 pt-1.5 mx-1 text-red-600 fa fa-hourglass-start"></i>
-                                <h4 class="text-base text-red-600">Departure Time</h4>
+                                <h4 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Time</h4>
                             </div>
                             <p>8:00 am</p>
                         </div>
                         <div class="block pt-4">
-                            <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
+                            <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
                                 <i class="w-6 pt-1.5 mx-1 fa fa-calendar text-red-600"></i>
-                                <h5 class="text-base text-red-600">Departure Date</h5>
+                                <h5 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Date</h5>
                             </div>
                             <p>23-05-2021</p>
                         </div>
                     </div>
-                    <div class="content-center w-auto pt-4 ml-28 divide-y-12">
+                    <div class="content-center w-auto pt-4 sm:ml-10 md:ml-28 divide-y-12">
                         <h6 class="text-xl text-red-600 ">Price</h6>
                         <p class="text-xl text-green-500">KES 1000</p>
                     </div>
@@ -428,14 +463,61 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="w-full justify-items-center ">
+                                        <div class="block p-2 pb-4">
+                                            <div class="flex flex-row p-2 ">
+                                                <div
+                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+
+                                                    <div 
+                                                        class="w-8 h-6 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 rounded-t-0"
+                                                        value=""></div>
+                                                    <div
+                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="w-8"></div>
+                                                <div class="w-8"></div>
+                                                <div
+                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+
+                                                    <div 
+                                                        class="w-8 h-6 font-bold text-gray-500 bg-red-600 border-0 rounded-sm rounded-t-0"
+                                                        value=""></div>
+                                                    <div
+                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="w-8"></div>
+                                                <div class="w-8"></div>
+                                                <div
+                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+
+                                                    <div 
+                                                        class="w-8 h-6 font-bold text-gray-500 bg-gray-400 border-0 rounded-sm rounded-t-0"
+                                                        value=""></div>
+                                                    <div
+                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
+                                                    </div>
+                                                </div>
+                                                
+
+                                            </div>
+                                            <div class="flex flex-row-reverse justify-between">
+                                                <div>Occupied</div>
+                                                <div>Selected</div>
+                                                <div>Available</div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                                    <div class="flex flex-row mt-5 space-x-5 text-right">
+                                    <div class="flex flex-row space-x-5 text-right sm:justify-center">
                                         <button @click="showModal = !showModal"
-                                            class="h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
+                                            class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
                                         </button>
                                         <button
-                                            class="w-auto h-10 text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border sm:px-4 sm:py-2 rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue
+                                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue
                                         </button>
 
                                     </div>
@@ -444,34 +526,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-row h-auto p-8 mt-2 bg-white shadow-lg">
+                <div class="block w-auto h-auto p-8 mt-2 space-y-4 bg-white shadow-lg sm:space-y-0 sm:flex sm:flex-row">
                     <img src="{{url('/images/bus.jpg')}}" alt="Bus Image" class="w-auto h-24">
-                    <div class="ml-16">
-                        <h2 class="w-auto mb-4 text-2xl">Nairobi - Kisumu</h2>
+                    <div class="sm:ml-8 md:ml-16">
+                        <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">Nairobi - Kisumu</h2>
                         <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
                             <i class="w-6 pt-1.5 mx-1 fa fa-map-marker text-red-600"></i>
-                            <h3 class="text-xl text-red-600">Boarding Place</h3>
+                            <h3 class="text-red-600 sm:text-sm md:text-xl">Boarding Place</h3>
                         </div>
                         <p>CBD</p>
 
                     </div>
-                    <div class="content-start block w-auto ml-16 ">
+                    <div class="content-start block w-auto sm:ml-8 md:ml-16 ">
                         <div class="block">
-                            <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
+                            <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
                                 <i class="w-6 pt-1.5 mx-1 fa fa-hourglass-start text-red-600"></i>
-                                <h4 class="text-base text-red-600">Departure Time</h4>
+                                <h4 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Time</h4>
                             </div>
                             <p>8:00 am</p>
                         </div>
                         <div class="block pt-4">
-                            <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
+                            <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
                                 <i class="w-6 pt-2 mx-1 text-red-600 fa fa-calendar"></i>
-                                <h5 class="text-base text-red-600">Departure Date</h5>
+                                <h5 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Date</h5>
                             </div>
                             <p>23-05-2021</p>
                         </div>
                     </div>
-                    <div class="content-center w-auto pt-4 ml-28 divide-y-12">
+                    <div class="content-center w-auto pt-4 sm:ml-10 md:ml-28 divide-y-12">
                         <h6 class="text-xl text-red-600 ">Price</h6>
                         <p class="text-xl text-green-500">KES 1000</p>
                     </div>
@@ -505,10 +587,10 @@
                     </div>
                 </div>
                 <div class="block w-full">
-                    <div class="content-center w-full px-16">
-                        <h1 class="mt-12 sm:text-3xl sm:ml-80">Top Routes</h1>
+                    <div class="content-center w-full sm:px-16">
+                        <h1 class="mt-12 text-2xl sm:text-3xl sm:ml-48 md:ml-96">Top Routes</h1>
                     </div>
-                    <div class="block w-full space-y-12 sm:space-y-0 sm:space-x-12 sm:inline-flex">
+                    <div class="block w-full space-y-12 md:justify-center md:space-x-auto sm:space-y-0 sm:space-x-12 sm:inline-flex">
                         <div class="relative text-center cursor-pointer hover:opacity-25">
                             <img src="{{url('/images/Mombasa.jpg')}}" class="shadow-xl rounded-xl" alt="">
                             <div class="text-xl font-semibold">Nairobi - Mombasa</div>
@@ -539,7 +621,7 @@
                 </div>
 
                 <!-- Links -->
-                <a href="#" class="block my-3 text-sm font-medium text-gray-300 duration-700 hover:text-gray-100">
+                <a href="/home" class="block my-3 text-sm font-medium text-gray-300 duration-700 hover:text-gray-100">
                     Home
                 </a>
                 <a href="#" class="block my-3 text-sm font-medium text-gray-300 duration-700 hover:text-gray-100">
@@ -616,6 +698,21 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+  $(".nav-toggler").each(function(_, navToggler) {
+    var target = $(navToggler).data("target");
+    $(navToggler).on("click", function() {
+      $(target).animate({
+        height: "toggle"
+      });
+    });
+  });
+});
+
+</script>
 
 </body>
 

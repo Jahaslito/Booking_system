@@ -8,6 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <title>Booking</title>
 </head>
 
@@ -64,38 +65,47 @@
 
             </div>
         </nav>
-        <div class="content-center w-full mb-20">
-            <div class="content-center block w-auto pl-16 space-y-5 bg-red-600 rounded-lg shadow-md bg-opacity-30 sm:items-center sm:pl-0 sm:justify-center sm:h-60 sm:w-full sm:space-x-5 sm:space-y-0 sm:flex sm:flex-row">
-                <div class=" searchFrom">
-                    <input type="text"
-                        class="p-2 pl-8 bg-gray-200 border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+        <div class="justify-center w-auto h-auto mb-20">
+
+           
+            
+            <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-gray-800 rounded-lg shadow-lg md:bg-gray-800 md:h-16 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start ">
+                
+                <div class="px-6 py-2 text-left">
+                    <p class="text-xl text-white md:text-2xl">Book >> Pay >> Board</p>
+                 </div>
+                <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">
+                    <div class=" searchFrom">
+                        <input type="text"
+                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         placeholder="From" value="" />
-                </div>
-                <div class="searchTo">
-                    <input type="text"
-                        class="p-2 pl-8 bg-gray-200 border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                    </div>
+                    <div class="searchTo">
+                        <input type="text"
+                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         placeholder="To" value="" />
-                </div>
-                <div class="searchDate">
-                    <input type="Date"
-                        class="p-2 pl-8 bg-gray-200 border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                    </div>
+                    <div class="searchDate">
+                        <input type="Date"
+                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         placeholder="Date" />
-                </div>
-                <div class="justify-center searchBus">
-                    <button
+                    </div>
+                    <div class="justify-center searchBus">
+                        <button
                         class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search
                         Bus</button>
+                    </div>
                 </div>
             </div>
 
         </div>
         <div class="content-start w-auto h-auto px-0 sm:px-0 md:px-16 ">
             <div class="justify-center sm:px-0 md:px-16">
-                <div class="w-auto md:content-center">
-                    <h1 class="mt-12 text-2xl sm:text-3xl sm:ml-48 md:ml-96 ">Search Results</h1>
+                <div class="w-auto text-center md:content-center">
+                    <h1 class="mt-12 text-2xl sm:text-3xl ">Search Results</h1>
                 </div>
                 <div class="block w-auto h-auto p-8 space-y-4 bg-white shadow-lg sm:flex sm:flex-row sm:space-y-0">
-                    <img src="{{url('/images/bus.jpg')}}" alt="Bus Image" class="w-auto h-24">
+                    <img src="{{url('/images/bus.jpg')}} " alt="Bus Image" class="hidden w-auto sm:block sm:h-24">
                     <div class="sm:ml-8 md:ml-16">
                         <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">Nairobi - Kisumu</h2>
                         <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
@@ -565,32 +575,16 @@
                                 Seat</button>
 
 
-                            <div x-show="showModal"
-                                class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center overflow-auto text-gray-500 bg-black bg-opacity-40"
-                                x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0"
-                                x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300"
-                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-
-                                <div x-show="showModal"
-                                    class="w-24 h-full p-6 bg-white shadow-2xl rounded-xl sm:w-10/12"
-                                    @click.away="showModal = false"
-                                    x-transition:enter="transition ease duration-100 transform"
-                                    x-transition:enter-start="opacity-0 scale-90 translate-y-1"
-                                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                                    x-transition:leave="transition ease duration-100 transform"
-                                    x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-                                    x-transition:leave-end="opacity-0 scale-90 translate-y-1">
-
-                                </div>
+                        
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="block w-full">
-                    <div class="content-center w-full sm:px-16">
-                        <h1 class="mt-12 text-2xl sm:text-3xl sm:ml-48 md:ml-96">Top Routes</h1>
+                    <div class="content-center w-full text-center sm:px-16">
+                        <h1 class="mt-12 text-2xl sm:text-3xl ">Top Routes</h1>
                     </div>
-                    <div class="block w-full space-y-12 md:justify-center md:space-x-auto sm:space-y-0 sm:space-x-12 sm:inline-flex">
+                    <div class="block w-full pl-3 space-y-12 sm:pl-0 md:justify-center md:space-x-auto sm:space-y-0 sm:space-x-12 sm:inline-flex">
                         <div class="relative text-center cursor-pointer hover:opacity-25">
                             <img src="{{url('/images/Mombasa.jpg')}}" class="shadow-xl rounded-xl" alt="">
                             <div class="text-xl font-semibold">Nairobi - Mombasa</div>
@@ -698,8 +692,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 <script>
   $(document).ready(function() {
   $(".nav-toggler").each(function(_, navToggler) {

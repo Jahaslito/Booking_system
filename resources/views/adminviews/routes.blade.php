@@ -9,30 +9,6 @@
 <body>
 	<section>
 		<article>
-			<div id="overlay" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
-				<div class="bg-gray-200">
-					<div class="flex justify-between items-center">
-						<h4 class="text-lg font-semibold">My Profile</h4>
-						<svg id="close-profile-modal" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-						</svg>
-					</div>
-					<div>
-						<label>Name</label>	
-						<input type="text" name="name" value="Jane Mbiru" readonly>
-						<br>
-						<label>Name</label>	
-						<input type="text" name="name" value="Jane Mbiru" readonly>
-						<br>
-						<label>Name</label>	
-						<input type="text" name="name" value="Jane Mbiru" readonly>
-						<br>						
-					</div>
-					<div class="flex justify-center items-center">
-						<button>Edit</button>
-					</div>
-				</div>        
-    		</div>
     		<div id="edit_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
 				<div class="bg-gray-50 p-3 rounded-lg">
 					<div class="flex justify-between items-center">
@@ -56,7 +32,7 @@
 			            </div>					
 					</div>
 					<div class="flex justify-center items-center mb-3">
-						<button class="bg-gray-900 px-3 py-1 text-gray-50 rounded">Edit</button>
+						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>
 					</div>
 				</div>        
     		</div>
@@ -83,12 +59,12 @@
 			            </div>									
 					</div>
 					<div class="flex justify-center items-center">
-						<button class="bg-gray-900 px-3 py-1 text-gray-50 rounded">Add</button>
+						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
 					</div>
 				</div>        
     		</div>
-			<div class="box-content p-2 m-1 bg-red-900 rounded-lg ">
-                <center class="text-xl cursor-default ">Routes</center>
+			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
+                <center class="text-lg cursor-default text-gray-50">Routes</center>
             </div>
 			<div class="m-2">
 				<table class="min-w-full divide-y divide-gray-200 box-border">
@@ -132,7 +108,7 @@
 			                2500
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-indigo-600 hover:text-indigo-900">Edit</button>
+			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
 			            <tr>
@@ -155,7 +131,7 @@
 			                2500
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-indigo-600 hover:text-indigo-900">Edit</button>
+			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
 			            <tr>
@@ -178,7 +154,7 @@
 			                2500
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-indigo-600 hover:text-indigo-900">Edit</button>
+			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
 
@@ -187,7 +163,7 @@
 			          </tbody>
 			        </table>
 			</div>	
-			<button onclick="addModal()" class="absolute right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-900 rounded-lg">Add</button>	
+			<button onclick="addModal()" class="absolute right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>	
 		</article>
 	</section>
 <script src="{{url('/js/components.js')}}"></script>

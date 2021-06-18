@@ -78,6 +78,41 @@
                        placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
 
+                <div class="col-md-6">
+                    <input id="phone_no" type="text" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no"
+                        value="{{ old('phone_no') }}" required autocomplete="phone_no" placeholder="Phone Number" autofocus>
+
+                    @error('phone_no')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <input id="dob" type="Date" class="form-control @error('dob') is-invalid @enderror" name="dob"
+                        value="{{ old('dob') }}" required autocomplete="dob" placeholder="Date of Birth" autofocus>
+
+                    @error('dob')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                <select required autocomplete="gender" class="form-control @error('gender') is-invalid @enderror" placeholder="Gender" autofocus>
+                    <option value="{{old('Male')}}">Male</option>
+                    <option value="{{ old('Female')}}">Female</option>
+                </select>
+                    
+                    @error('gender')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
 
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-primary">

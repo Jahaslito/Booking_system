@@ -272,7 +272,7 @@
                 404
               </text>
               <text transform="translate(459.5 213.994)" class="st8 st10 glow" style="text-decoration: underline" font-size="24.025">
-                <a href="/">Click to go back.</a>
+                <a href="/" id="backLink">Click to go back.</a>
               </text>
               <text transform="translate(659.5 213.994)" class="st8 st10" font-size="24.025">
               Page not found.
@@ -427,6 +427,7 @@
   100% { transform: translateX(-2px); }
 }
 
+
 /* #animation{
     background-color: rgb(10, 231, 21, 0.425);
     animation-name: animation;
@@ -452,5 +453,9 @@
     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
   }
 }
-
+#backLink{
+    color: #38c172;
+    stroke: #c0342c;
+    animation: glow 1s ease-in-out infinite alternate;
+}
 </style>

@@ -18,7 +18,8 @@ class CreateBusesTable extends Migration
             $table->string('number_plate');
             $table->integer('capacity');
             $table->string('model');
-            $table->foreign('route_id')->references('id')->on('routes');
+            //$table->bigInteger('route_id');
+            $table->foreignId('route_id')->references('id')->on('routes');
             $table->timestamps();
         });
     }

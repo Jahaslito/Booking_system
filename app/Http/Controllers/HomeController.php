@@ -56,4 +56,8 @@ class HomeController extends Controller
     public function booking(){
         return view('customerViews.booking');
     }
+
+    public function payment(){
+        return view('customerViews.payment');
+    }
 }

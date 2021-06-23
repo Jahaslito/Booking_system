@@ -18,8 +18,10 @@
 						</svg>
 					</div>
 					<div class="grid grid-cols-6 gap-6 p-4">
+                        @foreach($buses as $bus)
+                            $buses = DB::select(
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="plate" class="block text-sm font-medium text-gray-700">Number Plate</label>
+			                <label for="plate" class="block text-sm font-medium text-gray-700">{{$bus->number_plate}}</label>
 			                <input type="text" name="plate" id="plate" value="KBC 345T" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
@@ -29,12 +31,12 @@
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
 			                <input type="text" name="model" id="model" value="Scania" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
-			            </div>				
+			            </div>
 					</div>
 					<div class="flex justify-center items-center">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>
 					</div>
-				</div>        
+				</div>
     		</div>
     		<div id="add_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
 				<div class="bg-gray-50 p-3 rounded-lg">
@@ -56,12 +58,12 @@
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
 			                <input type="text" name="model" id="model" placeholder="Scania" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
-			            </div>			
+			            </div>
 					</div>
 					<div class="flex justify-center items-center">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
 					</div>
-				</div>        
+				</div>
     		</div>
 			<div class="box-border p-2 m-1 bg-red-600 rounded-lg">
                 <center class="text-lg cursor-default text-gray-50">Buses</center>

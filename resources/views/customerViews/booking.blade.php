@@ -15,7 +15,7 @@
 <body class="content-start w-full h-full p-px bg-gray-50">
     <nav class="flex flex-wrap items-center p-3 bg-red-600">
       <a href="/home" class="inline-flex items-center p-2 mr-4">
-        
+
         <span class="text-xl font-bold tracking-wide text-white uppercase"
           >Logo</span
         >
@@ -51,7 +51,7 @@
           >
             <span>Contact Us</span>
           </a>
-          
+
         </div>
       </div>
     </nav>
@@ -67,33 +67,70 @@
         </nav>
         <div class="justify-center w-auto h-auto mb-20">
 
-           
-            
+
+
             <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-gray-800 rounded-lg shadow-lg md:bg-gray-800 md:h-16 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start ">
-                
+
                 <div class="px-6 py-2 text-left">
                     <p class="text-xl text-white md:text-2xl">Book >> Pay >> Board</p>
                  </div>
                 <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">
                     <div class=" searchFrom">
-                        <input type="text"
-                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                        placeholder="From" value="" />
+{{--                        <input type="text"--}}
+{{--                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
+{{--                        placeholder="From" value="" />--}}
+
+                        <select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                                placeholder="From">
+                            <option>From</option>
+                            @foreach($fromData as $row1)
+                                <option value="{{$row1->id}}">{{$row1->source}}</option>
+                            @endforeach
+                        </select>
+
                     </div>
                     <div class="searchTo">
-                        <input type="text"
-                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                        placeholder="To" value="" />
+{{--                        <input type="text"--}}
+{{--                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
+{{--                        placeholder="To" value="" />--}}
+
+                        <select name="" select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                                placeholder="To">
+                            <option>To</option>
+                            @foreach($toData as $row2)
+                                <option value="{{$row2->id}}">{{$row2->destination}}</option>
+                            @endforeach
+                        </select>
+
                     </div>
+
                     <div class="searchDate">
                         <input type="Date"
                         class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                        placeholder="Date" />
+                        placeholder="Date" id="datefield"/>
+
+                        <script>
+                                var today = new Date();
+                                var dd = today.getDate();
+                                var mm = today.getMonth()+1; //January is 0!
+                                var yyyy = today.getFullYear();
+                                if(dd<10){
+                                        dd='0'+dd
+                                    }
+                                    if(mm<10){
+                                        mm='0'+mm
+                                    }
+
+                                today = yyyy+'-'+mm+'-'+dd;
+                                document.getElementById("datefield").setAttribute("min", today);
+                        </script>
                     </div>
                     <div class="justify-center searchBus">
-                        <button
-                        class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search
-                        Bus</button>
+
+                        <form method="post" action="">
+                        <button class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search Bus</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -104,15 +141,17 @@
                 <div class="w-auto text-center md:content-center">
                     <h1 class="mt-12 text-2xl sm:text-3xl ">Search Results</h1>
                 </div>
+
+                @foreach($triproutes as $triproute)
                 <div class="block w-auto h-auto p-8 space-y-4 bg-white shadow-lg sm:flex sm:flex-row sm:space-y-0">
                     <img src="{{url('/images/bus.jpg')}} " alt="Bus Image" class="hidden w-auto sm:block sm:h-24">
                     <div class="sm:ml-8 md:ml-16">
-                        <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">Nairobi - Kisumu</h2>
+                        <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">{{$triproute->source}} - {{$triproute->destination}}</h2>
                         <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
                             <i class="w-6 pt-2 mx-1 text-red-600 fa fa-map-marker"></i>
                             <h3 class="text-red-600 sm:text-sm md:text-xl">Boarding Place</h3>
                         </div>
-                        <p>CBD</p>
+                        <p>{{$triproute->boarding_place}}</p>
 
                     </div>
                     <div class="content-start block w-auto sm:ml-8 md:ml-16 ">
@@ -121,19 +160,19 @@
                                 <i class="w-6 pt-1.5 mx-1 text-red-600 fa fa-hourglass-start"></i>
                                 <h4 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Time</h4>
                             </div>
-                            <p>8:00 am</p>
+                            <p>{{$triproute->departure}}</p>
                         </div>
                         <div class="block pt-4">
                             <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
                                 <i class="w-6 pt-1.5 mx-1 fa fa-calendar text-red-600"></i>
                                 <h5 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Date</h5>
                             </div>
-                            <p>23-05-2021</p>
+                            <p>{{$triproute->date}}</p>
                         </div>
                     </div>
                     <div class="content-center w-auto pt-4 sm:ml-10 md:ml-28 divide-y-12">
                         <h6 class="text-xl text-red-600 ">Price</h6>
-                        <p class="text-xl text-green-500">KES 1000</p>
+                        <p class="text-xl text-green-500">KES {{$triproute->price}}</p>
                     </div>
                     <div class="content-center pt-8 ml-12">
                         <div x-data="{ showModal : false }">
@@ -175,6 +214,14 @@
                                                 <div class="w-8"></div>
                                                 <i class="fas fa-steering-wheel"></i>
                                             </div>
+
+{{--                                            @foreach($seats as $seat)--}}
+{{--                                                {{ $seat->capacity }};--}}
+{{--                                                if({{ $seat->capacity }}==24){--}}
+{{--                                            @endforeach--}}
+{{--                                            }--}}
+
+
                                             <div class="flex flex-row p-2 ">
                                                 <div
                                                     class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
@@ -360,6 +407,8 @@
                                                 </div>
 
                                             </div>
+
+
                                             <div class="flex flex-row p-2 ">
                                                 <div
                                                     class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
@@ -468,18 +517,22 @@
                                                     <div
                                                         class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                                                     </div>
+
                                                 </div>
 
+
                                             </div>
+
                                         </div>
                                     </div>
+
                                     <div class="w-full justify-items-center ">
                                         <div class="block p-2 pb-4">
                                             <div class="flex flex-row p-2 ">
                                                 <div
                                                     class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                                                    <div 
+                                                    <div
                                                         class="w-8 h-6 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 rounded-t-0"
                                                         value=""></div>
                                                     <div
@@ -491,7 +544,7 @@
                                                 <div
                                                     class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                                                    <div 
+                                                    <div
                                                         class="w-8 h-6 font-bold text-gray-500 bg-red-600 border-0 rounded-sm rounded-t-0"
                                                         value=""></div>
                                                     <div
@@ -503,14 +556,14 @@
                                                 <div
                                                     class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                                                    <div 
+                                                    <div
                                                         class="w-8 h-6 font-bold text-gray-500 bg-gray-400 border-0 rounded-sm rounded-t-0"
                                                         value=""></div>
                                                     <div
                                                         class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                                                     </div>
                                                 </div>
-                                                
+
 
                                             </div>
                                             <div class="flex flex-row-reverse justify-between">
@@ -536,6 +589,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="block w-auto h-auto p-8 mt-2 space-y-4 bg-white shadow-lg sm:space-y-0 sm:flex sm:flex-row">
                     <img src="{{url('/images/bus.jpg')}}" alt="Bus Image" class="w-auto h-24">
                     <div class="sm:ml-8 md:ml-16">
@@ -575,7 +629,7 @@
                                 Seat</button>
 
 
-                        
+
                             </div>
                         </div>
                     </div>
@@ -692,6 +746,7 @@
             </div>
         </div>
     </footer>
+
 <script>
   $(document).ready(function() {
   $(".nav-toggler").each(function(_, navToggler) {

@@ -14,7 +14,9 @@ class TerminalController extends Controller
      */
     public function index()
     {
-        //
+        $terminal =Terminals::all();
+
+        return view('adminviews.terminals', ['terminals' => $terminals]);
     }
 
     /**

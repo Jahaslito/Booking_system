@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class bus extends Model
 {
-    use HasFactory;
+    protected $table='buses';
 }

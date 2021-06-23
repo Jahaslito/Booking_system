@@ -66,6 +66,9 @@
 			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Drivers</center>
             </div>
+			{{ csrf_field() }}
+				<?php $no=1; ?>
+				@foreach ($drivers as $key =>$value)
 			<div class="m-2">
 				<table class="min-w-full divide-y divide-gray-200 box-border">
 			          <thead class="bg-gray-50">
@@ -93,77 +96,31 @@
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-			                      1
+									{{ $no++ }}
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Barry Thuku</div>
+			                <div class="text-sm text-gray-900">{{ $value->name }}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                0798989889
+			                {{ $value->phone_number }}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                WLX165
+			                {{ $value->driver_licence }}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      2
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Barry Thuku</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                0798989889
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                WLX165
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      3
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Barry Thuku</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                0798989889
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                WLX165
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
-
 			            <!-- More people... -->
 			          </tbody>
 			        </table>
+
 			</div>
 			<button onclick="addModal()" class="right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
-			
+			@endforeach
 		</article>
 	</section>
 <script src="{{url('/js/components.js')}}"></script>

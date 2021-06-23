@@ -15,7 +15,9 @@ class RouteController extends Controller
      */
     public function index()
     {
-//
+        $routes =Routes::all();
+
+        return view('adminviews.routes', ['routes' => $routes]);
     }
 
     /**

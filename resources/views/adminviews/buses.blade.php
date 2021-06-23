@@ -22,15 +22,15 @@
                             $buses = DB::select(
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="plate" class="block text-sm font-medium text-gray-700">{{$bus->number_plate}}</label>
-			                <input type="text" name="plate" id="plate" value="KBC 345T" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="plate" id="plate" value="{{$bus->number_plate}}" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity</label>
-			                <input type="text" name="capacity" id="capacity" value="33" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="capacity" class="block text-sm font-medium text-gray-700">{{$bus->number_plate}}</label>
+			                <input type="text" name="capacity" id="capacity" value="{{$bus->capacity}}" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
-			                <input type="text" name="model" id="model" value="Scania" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="model" class="block text-sm font-medium text-gray-700">{{$bus->number_plate}}</label>
+			                <input type="text" name="model" id="model" value="{{$bus->model}}" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 					</div>
 					<div class="flex justify-center items-center">
@@ -69,6 +69,12 @@
                 <center class="text-lg cursor-default text-gray-50">Buses</center>
             </div>
 			<div class="m-2">
+				{{ csrf_field() }}
+				<?php $n=1; ?>
+				
+				@foreach ($bus as $key=>$value)
+					
+				
 				<table class="min-w-full divide-y divide-gray-200 box-border">
 			          <thead class="bg-gray-50">
 			            <tr>
@@ -95,80 +101,32 @@
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-			                      1
+									{{$n++}}
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">KBC 345T</div>
+			                <div class="text-sm text-gray-900">{{$value->number_plate}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-			                  33
+								{{$value->capacity}}
 			                </span>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                Scania
+			                {{$value->model}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      2
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">KBC 345T</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-			                  33
-			                </span>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                Scania
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      3
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">KBC 345T</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-			                  33
-			                </span>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                Scania
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
+			           
 
 			            <!-- More people... -->
 			          </tbody>
 			        </table>
+					@endforeach
 			</div>
 			<button onclick="addModal()" class="absolute right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
 		</article>

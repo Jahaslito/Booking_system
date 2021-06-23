@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class terminal extends Model
 {
-    use HasFactory;
+    protected $table='terminals';
 }

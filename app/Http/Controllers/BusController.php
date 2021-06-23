@@ -14,7 +14,9 @@ class BusController extends Controller
      */
     public function index()
     {
-        //
+        $bus =Bus::all();
+
+        return view('adminviews.buses', ['bus' => $bus]);
     }
 
     /**

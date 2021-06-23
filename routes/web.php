@@ -38,3 +38,5 @@ Route::get('/booking',[HomeController::class, 'booking'])->name('booking');
 //Route::get('/booking',[BookingController::class, 'selectSeats']);
 Route::get('/booking',[RouteController::class, 'search']);
 //Route::get('/booking',[BookingController::class,'selectBus']);
+Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
+Route::get('/adminviews/buses', 'App\Http\Controllers\BusController@index');

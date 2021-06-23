@@ -84,10 +84,10 @@ class BookingController extends Controller
         //
     }
 
-//    public function selectSeats(){
-////        $seats = DB::select('select * from buses');
-////        return view('customerViews.booking',compact('seats'));
-//    }
+    public function selectSeats(){
+//        $seats = DB::select('select * from buses');
+//        return view('customerViews.booking',compact('seats'));
+    }
 
 //    public function selectBus(){
 //        $seats = DB::select('select * from buses');

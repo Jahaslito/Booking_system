@@ -127,9 +127,16 @@
                     </div>
                     <div class="justify-center searchBus">
 
-                        <form method="post" action="">
+{{--                        <form method="get" action="route{{customerViews.booking}}">--}}
+{{--                            <form action="{{ route('booking.show') }}" method="get">--}}
                         <button class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search Bus</button>
                         </form>
+
+{{--                        if (count($buses) > 0) {--}}
+{{--                        @foreach ($buses as $bus)--}}
+{{--                        {{$row2->destination}};--}}
+{{--                        }--}}
+{{--                        @endforeach--}}
 
                     </div>
                 </div>
@@ -177,9 +184,12 @@
                     <div class="content-center pt-8 ml-12">
                         <div x-data="{ showModal : false }">
 
-                            <button @click="showModal = !showModal"
-                                class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Select
+                            <form action="/selectSeat" method="get">
+{{--                                <button type="submit" class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue</button>--}}
+
+                            <button class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Select
                                 Seat</button>
+                            </form>
 
 
                             <div x-show="showModal"
@@ -197,6 +207,7 @@
                                     x-transition:leave="transition ease duration-100 transform"
                                     x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                                     x-transition:leave-end="opacity-0 scale-90 translate-y-1">
+
                                     <span class="block mb-3 text-2xl font-bold">Select Seat</span>
                                     <div class="w-full justify-items-center">
                                         <div class="block p-2 pb-4 border-4 border-gray-400 rounded-md ">
@@ -579,9 +590,6 @@
                                         <button @click="showModal = !showModal"
                                             class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
                                         </button>
-                                        <button
-                                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue
-                                        </button>
 
                                     </div>
                                 </div>
@@ -590,49 +598,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="block w-auto h-auto p-8 mt-2 space-y-4 bg-white shadow-lg sm:space-y-0 sm:flex sm:flex-row">
-                    <img src="{{url('/images/bus.jpg')}}" alt="Bus Image" class="w-auto h-24">
-                    <div class="sm:ml-8 md:ml-16">
-                        <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">Nairobi - Kisumu</h2>
-                        <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
-                            <i class="w-6 pt-1.5 mx-1 fa fa-map-marker text-red-600"></i>
-                            <h3 class="text-red-600 sm:text-sm md:text-xl">Boarding Place</h3>
-                        </div>
-                        <p>CBD</p>
 
-                    </div>
-                    <div class="content-start block w-auto sm:ml-8 md:ml-16 ">
-                        <div class="block">
-                            <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
-                                <i class="w-6 pt-1.5 mx-1 fa fa-hourglass-start text-red-600"></i>
-                                <h4 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Time</h4>
-                            </div>
-                            <p>8:00 am</p>
-                        </div>
-                        <div class="block pt-4">
-                            <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
-                                <i class="w-6 pt-2 mx-1 text-red-600 fa fa-calendar"></i>
-                                <h5 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Date</h5>
-                            </div>
-                            <p>23-05-2021</p>
-                        </div>
-                    </div>
-                    <div class="content-center w-auto pt-4 sm:ml-10 md:ml-28 divide-y-12">
-                        <h6 class="text-xl text-red-600 ">Price</h6>
-                        <p class="text-xl text-green-500">KES 1000</p>
-                    </div>
-                    <div class="content-center pt-8 ml-12">
-                        <div x-data="{ showModal : false }">
-
-                            <button @click="showModal = !showModal"
-                                class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Select
-                                Seat</button>
-
-
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="block w-full">
                     <div class="content-center w-full text-center sm:px-16">

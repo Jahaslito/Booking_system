@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +36,10 @@ Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('route
 Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
 Route::get('/booking',[HomeController::class, 'booking'])->name('booking');
 Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
+//Route::get('/booking',[BookingController::class, 'selectSeats']);
+Route::get('/booking',[RouteController::class, 'search']);
+//Route::get('/payment',[BookingController::class,'index']);
+//Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
+Route::view('/selectSeat', 'customerViews.selectSeat');
+
+

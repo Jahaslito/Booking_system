@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -260,3 +261,5 @@
 <script src="{{url('/js/payment.js')}}"></script>
 </body>
 </html>
+
+

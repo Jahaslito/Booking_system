@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RouteController extends Controller
 {
@@ -14,7 +15,7 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+//
     }
 
     /**
@@ -81,5 +82,12 @@ class RouteController extends Controller
     public function destroy(route $route)
     {
         //
+    }
+
+    public function search(){
+        $fromData = DB::select('select distinct * from routes');
+        $toData = DB::select('select distinct * from routes');
+        $triproutes = DB::select('select trips.departure, trips.arrival, trips.date, routes.source, routes.destination, routes.boarding_place, routes.price,routes.price from routes inner join trips on routes.id = trips.route_id');;
+        return view('customerViews.booking',compact('fromData','toData','triproutes'));
     }
 }

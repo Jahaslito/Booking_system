@@ -9,6 +9,8 @@
 <body>
 	<section>
 		<article>
+
+{{-- EDIT Modal --}}
     		<div id="edit_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
 				<div class="bg-gray-50 p-3 rounded-lg">
 					<div class="flex justify-between items-center">
@@ -17,20 +19,24 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+
+					
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="name" value="Barry Thuku" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="name" id="name"  readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="phone_number" id="phone_number" value="0798198219" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Numbere</label>
+			                <input type="text" name="phone_number" id="phone_number" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="licence" id="licence" value="WLX165" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="licence" id="licence"  readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>		
 					</div>
+
+
 					<div class="flex justify-center items-center">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>
 					</div>
@@ -44,31 +50,44 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+
+
+
+{{-- START OF ADD MODAL --}}
+			<form action="/drivers" method="POST">
+				@csrf
+			
+				<div class="form-group">
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="name" placeholder="Barry Thuku" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="name" placeholder="Barry " class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="phone_number" id="phone_number" placeholder="0798198219" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Numbera</label>
+			                <input type="text" name="phone_number"  placeholder="0712345678" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="licence" id="licence" placeholder="WLX165" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="driver_licence"  placeholder="KE56F65" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>					
 					</div>
 					<div class="flex justify-center items-center">
-						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
+						<button type="submit" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
 					</div>
-				</div>        
+				</div>  
+			</div>
+			</form>
+				
+				{{-- END OF ADD MODAL --}}
+
+
+
     		</div>
 			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Drivers</center>
             </div>
-			{{ csrf_field() }}
-				<?php $no=1; ?>
-				@foreach ($drivers as $key =>$value)
+			
 			<div class="m-2">
 				<table class="min-w-full divide-y divide-gray-200 box-border">
 			          <thead class="bg-gray-50">
@@ -91,36 +110,40 @@
 			            </tr>
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
+						  @foreach ($driver as $driver)							  
+						
 			            <tr>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-									{{ $no++ }}
+									{{$driver->id}}
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">{{ $value->name }}</div>
+			                <div class="text-sm text-gray-900">{{$driver->name}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                {{ $value->phone_number }}
+			                {{$driver->phone_number}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                {{ $value->driver_licence }}
+			                {{$driver->driver_licence}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
+													
+						@endforeach
 			            <!-- More people... -->
 			          </tbody>
 			        </table>
 
 			</div>
 			<button onclick="addModal()" class="right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
-			@endforeach
+			
 		</article>
 	</section>
 <script src="{{url('/js/components.js')}}"></script>

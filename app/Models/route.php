@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class route extends Model
 {
-    protected $table='routes';
+    protected $fillable=[
+        'id',
+        'source',
+        'destination',
+        'price',
+    ];
 }

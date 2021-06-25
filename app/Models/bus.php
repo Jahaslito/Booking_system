@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class bus extends Model
 {
-    protected $table='buses';
+    protected $fillable = ['id','number_plate', 'capacity','model','route_id'];
+
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\BusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,15 @@ Route::get('/test', function () {
 Auth::routes();
 
 //Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+//Route::resource('/adminviews/routes', 'RouteController');
+//Route::resource('routes', [\App\Http\Controllers\RouteController::class]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
 Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('drivers');
 Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
-Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
-Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
+//Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
+//Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
 Route::get('/booking',[HomeController::class, 'booking'])->name('booking');
 //Route::get('/booking',[BookingController::class, 'selectSeats']);
 Route::get('/booking',[RouteController::class, 'search']);
@@ -41,5 +44,20 @@ Route::get('/booking',[RouteController::class, 'search']);
 //Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
 Route::view('/payment', 'customerViews.payment');
 Route::view('/selectSeat', 'customerViews.selectSeat');
+//Route::get('/booking',[BookingController::class,'selectBus']);
+//Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
+Route::get('/adminviews/buses', 'App\Http\Controllers\BusController@index');
+Route::get('/adminviews/routes', 'App\Http\Controllers\RouteController@index');
+
+
+
+Route::get('/routes/create',[RouteController::class,'create']);
+Route::post('/routes',[RouteController::class,'store']);
+
+Route::get('/buses/create',[BusController::class,'create']);
+Route::post('/buses',[BusController::class,'store']);
+
+Route::get('/drivers/create',[DriverController::class,'create']);
+Route::post('/drivers',[DriverController::class,'store']);
 
 

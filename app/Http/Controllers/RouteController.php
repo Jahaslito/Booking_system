@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use App\Models\route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +16,13 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $routes =Routes::all();
+        $route =Route::all();
 
-        return view('adminviews.routes', ['routes' => $routes]);
+        return view('adminviews.routes', ['route' => $route]);
     }
+
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +31,8 @@ class RouteController extends Controller
      */
     public function create()
     {
-        //
+        $route= new Route();
+        return view('adminviews.routes',compact('route'));
     }
 
     /**
@@ -38,7 +43,19 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'source'=>'required',
+            'destination'=>'required',
+            'price'=> 'required',
+        ]
+        );
+        $route = new Route();
+        $route->source=$request->source;
+        $route->destination=$request-> destination;
+        $route->price=$request->price;
+        $route->save();
+        Session::put('Success','The route has been added successfully');
+        return redirect('/adminviews.routes');
     }
 
     /**
@@ -72,7 +89,13 @@ class RouteController extends Controller
      */
     public function update(Request $request, route $route)
     {
-        //
+        $route->source = $request->source;
+        $route->destination = $request->destination;
+        $route->price = $request->price;
+        $route->update();
+        Session::put('Success', 'The route has been edited successfully');
+        return redirect('/adminviews/routes');
+    
     }
 
     /**
@@ -83,7 +106,8 @@ class RouteController extends Controller
      */
     public function destroy(route $route)
     {
-        //
+        $route ->delete();
+        return redirect('/adminviews/routes');
     }
 
     public function search(){

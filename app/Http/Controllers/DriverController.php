@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\driver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facedes\input;
+use App\Http\Requests;
+
+
 
 class DriverController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $drivers =Driver::all();
+        $driver =Driver::all();
 
-        return view('adminviews.drivers', ['drivers' => $drivers]);
+        return view('adminviews.drivers', ['driver' => $driver]);
     }
+
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +35,8 @@ class DriverController extends Controller
      */
     public function create()
     {
-        //
+        $driver= new driver();
+        return view('adminviews.drivers',compact('driver'));
     }
 
     /**
@@ -37,7 +47,19 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'phone_number'=>'required',
+            'driver_licence'=> 'required',
+        ]
+        );
+        $driver = new driver();
+        $driver->name=$request->name;
+        $driver->phone_number=$request-> phone_number;
+        $driver->driver_licence=$request->driver_licence;
+        $driver->save();
+        Session::put('Success','The driver has been added successfully');
+        return redirect('/adminviews.drivers');
     }
 
     /**
@@ -66,22 +88,32 @@ class DriverController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\driver  $driver
+     * @param  \App\Models\route  $route
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, driver $driver)
     {
-        //
+        $driver->name = $request->name;
+        $driver->phone_number = $request->phone_number;
+        $driver->driver_licence = $request->driver_licence;
+        $driver->update();
+        Session::put('Success', 'The driver has been edited successfully');
+        return redirect('/adminviews/driver');
+    
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\driver  $driver
+     * @param  \App\Models\driver  $route
      * @return \Illuminate\Http\Response
      */
     public function destroy(driver $driver)
     {
-        //
+        $driver ->delete();
+        return redirect('/adminviews/drivers');
     }
+
+ 
 }
+

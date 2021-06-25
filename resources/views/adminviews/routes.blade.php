@@ -44,6 +44,8 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+					<form action="/routes" method="POST">
+						@csrf
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="source" class="block text-sm font-medium text-gray-700">Source</label>
@@ -59,14 +61,17 @@
 			            </div>									
 					</div>
 					<div class="flex justify-center items-center">
-						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
+						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75" type="submit">Add</button>
 					</div>
+				</form>
 				</div>        
     		</div>
+		
 			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Routes</center>
             </div>
 			<div class="m-2">
+				
 				<table class="min-w-full divide-y divide-gray-200 box-border">
 			          <thead class="bg-gray-50">
 			            <tr>
@@ -88,80 +93,39 @@
 			            </tr>
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
+						@foreach ($route as $route)
+						<tr>
+			              <td class="px-6 py-4 whitespace-nowrap">				
+							
+							
+							
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-			                      1
+									{{$route->id}}
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Nairobi</div>
+			                <div class="text-sm text-gray-900">{{$route->source}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Kisumu</div>
+			                <div class="text-sm text-gray-900">{{$route->destination}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                2500
+			                {{$route->price}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      2
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Nairobi</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Kisumu</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                2500
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      3
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Nairobi</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Kisumu</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                2500
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
-
-
-			            <!-- More people... -->
+						@endforeach
+			           
 			          </tbody>
 			        </table>
+					
+					
 			</div>	
 			<button onclick="addModal()" class="absolute right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>	
 		</article>

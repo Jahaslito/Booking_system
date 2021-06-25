@@ -38,11 +38,11 @@ Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips')
 //Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
 //Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
 Route::get('/booking',[HomeController::class, 'booking'])->name('booking');
+Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 //Route::get('/booking',[BookingController::class, 'selectSeats']);
 Route::get('/booking',[RouteController::class, 'search']);
 //Route::get('/payment',[BookingController::class,'index']);
 //Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
-Route::view('/payment', 'customerViews.payment');
 Route::view('/selectSeat', 'customerViews.selectSeat');
 //Route::get('/booking',[BookingController::class,'selectBus']);
 //Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');

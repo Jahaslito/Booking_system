@@ -15,20 +15,20 @@
     @extends('layouts.app')
 
     @section('content')
- 
+
     <div class="card-body" id="card-body">
         <div class="form-login sign-in-container ">
-             <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <h1 class="title">Sign Up</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                    <a href=" {{ route('login.facebook') }}" class="social"><i class="fa fa-facebook"></i></a>
+                    <a href="{{ route('login.google') }}" class="social"><i class="fa fa-google"></i></a>
                     <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                 </div>
-                <span class="text" >or use another email account</span>
- 
+                <span class="text">or use another email account</span>
+
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -57,7 +57,7 @@
 
 
 
-                
+
 
                 <div class="col-md-6">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -75,7 +75,7 @@
 
                 <div class="col-md-6">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                       placeholder="Confirm Password" required autocomplete="new-password">
+                        placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
 
 
@@ -88,22 +88,23 @@
             </form>
         </div>
         <div class="form-login register-container ">
-           <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <h1 class="title">Login</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                    <a href="{{ route('login.facebook') }}" class="social"><i class="fa fa-facebook-f"></i></a>
+                    <a href="{{ route('login.google') }}" class="social"><i class="fa fa-google"></i></a>
                     <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                 </div>
-                <span class="text" >or use your email account</span>
+                <span class="text">or use your email account</span>
 
 
 
 
                 <div class="col-md-8">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
+                        name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email"
+                        autofocus>
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -160,13 +161,13 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                   
+
                     <h1>Hello</h1>
                     <p>Sign in here to continue where we left off</p>
                     <button class="ghost" id="Back">Login</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                   
+
                     <h1>Welcome</h1>
                     <p>Sign up here and travel with us</p>
                     <button class="ghost" id="Reset">Sign Up</button>

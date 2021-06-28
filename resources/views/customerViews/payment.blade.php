@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +99,7 @@
 				</div>        
     		</div>
 
-    		<!-- <div id="payment_modal" class="fixed top-0 bottom-0 left-0 right-0 z-50 hidden items-center justify-center overflow-auto text-gray-500 bg-black bg-opacity-40">
+    		<div id="payment_modal" class="fixed top-0 bottom-0 left-0 right-0 z-50 hidden items-center justify-center overflow-auto text-gray-500 bg-black bg-opacity-40">
 				<div class="bg-gray-50 p-3 rounded-lg">
 					<div class="flex justify-between items-center">
 						<h4 class="text-lg font-semibold ">Confirm Payment</h4>
@@ -108,26 +107,25 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+                    <div class="w-auto">
+                        <p class="text-center">Change contact if it is not the number paying for the booking</p>
+                    </div>
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="source" class="block text-sm font-medium text-gray-700">From</label>
-			                <input readonly type="text" name="source" id="source" value="Mombasa" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+			                <input readonly type="text" name="name" id="name" value="Jane Mbosso" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="destination" class="block text-sm font-medium text-gray-700">To</label>
-			                <input readonly type="text" name="destination" id="destination" value="Kisumu" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
-			            </div>
-						<div class="col-span-6 sm:col-span-3">
-			                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-			                <input readonly type="text" name="date" id="date" value="12-05-2021" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
+			                <input type="text" name="contact" id="contact" value="0723565657" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
-			                <label for="seatNo" class="block text-sm font-medium text-gray-700">Seat Number</label>
-			                <input readonly type="text" name="seatNo" id="seatNo" value="32" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="no_of_seats" class="block text-sm font-medium text-gray-700">Number of Seats</label>
+			                <input readonly type="number" name="no_of_seats" id="no_of_seats" value="2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
-			                <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-			                <input readonly type="number" name="price" id="price" value="2500" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="price" class="block text-sm font-medium text-gray-700">Total Price</label>
+			                <input readonly type="number" name="price" id="price" value="5000" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 												
 					</div>
@@ -137,14 +135,14 @@
 	                            class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
 	                        </button>
 	                        <button
-	                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Modify
+	                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Pay
 	                        </button>
 
 	                    </div>
 					</div>
 				</div>        
-    		</div> -->
-    <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start grid grid-cols-2 gap-2 m-4 p-2
+    		</div>
+    <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 divide-x divide-gray-500
     ">
     	<div class="ml-2">
     		<h3>Trip Details</h3>
@@ -157,7 +155,7 @@
     		<br>
     		<button onclick="tripModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Modify</button>
     	</div>
-    	<div>
+    	<div class="pl-4">
     		<h3>Payment Details</h3>
     		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

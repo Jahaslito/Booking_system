@@ -5,6 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\BusController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Drivercontroller;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +41,10 @@ Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('dri
 Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
 //Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
 //Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
-Route::get('/booking',[HomeController::class, 'booking'])->name('booking');
+Route::get('/booking', [HomeController::class, 'booking'])->name('booking');
 Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 //Route::get('/booking',[BookingController::class, 'selectSeats']);
-Route::get('/booking',[RouteController::class, 'search']);
+Route::get('/booking', [RouteController::class, 'search']);
 //Route::get('/payment',[BookingController::class,'index']);
 //Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
 Route::view('/selectSeat', 'customerViews.selectSeat');
@@ -51,13 +55,11 @@ Route::get('/adminviews/routes', 'App\Http\Controllers\RouteController@index');
 
 
 
-Route::get('/routes/create',[RouteController::class,'create']);
-Route::post('/routes',[RouteController::class,'store']);
+Route::get('/routes/create', [RouteController::class, 'create']);
+Route::post('/routes', [RouteController::class, 'store']);
 
-Route::get('/buses/create',[BusController::class,'create']);
-Route::post('/buses',[BusController::class,'store']);
+Route::get('/buses/create', [BusController::class, 'create']);
+Route::post('/buses', [BusController::class, 'store']);
 
-Route::get('/drivers/create',[DriverController::class,'create']);
-Route::post('/drivers',[DriverController::class,'store']);
-
-
+Route::get('/drivers/create', [DriverController::class, 'create']);
+Route::post('/drivers', [DriverController::class, 'store']);

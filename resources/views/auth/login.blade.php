@@ -15,10 +15,10 @@
     @extends('layouts.app')
 
     @section('content')
- 
+
     <div class="card-body" id="card-body">
         <div class="form-login sign-in-container ">
-             <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <h1 class="title">Sign Up</h1>
@@ -27,8 +27,8 @@
                     <a href="#" class="social"><i class="fa fa-google"></i></a>
                     <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                 </div>
-                <span class="text" >or use another email account</span>
- 
+                <span class="text">or use another email account</span>
+
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -57,7 +57,7 @@
 
 
 
-                
+
 
                 <div class="col-md-6">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -75,19 +75,33 @@
 
                 <div class="col-md-6">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                       placeholder="Confirm Password" required autocomplete="new-password">
+                        placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
 
                 <div class="col-md-6">
-                    <input id="phone_no" type="text" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no"
-                        value="{{ old('phone_no') }}" required autocomplete="phone_no" placeholder="Phone Number" autofocus>
+                    <input id="phone_number" type="text"
+                        class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
+                        value="{{ old('phone_number') }}" required autocomplete="phone_number"
+                        placeholder="Phone Number" autofocus>
 
-                    @error('phone_no')
+                    @error('phone_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
+                <div class="col-md-6">
+                    <input id="nationality" type="text" class="form-control @error('nationality') is-invalid @enderror"
+                        name="nationality" value="{{ old('nationality') }}" required autocomplete="nationality"
+                        placeholder="Nationality" autofocus>
+
+                    @error('nationality')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
 
                 <div class="col-md-6">
                     <input id="dob" type="Date" class="form-control @error('dob') is-invalid @enderror" name="dob"
@@ -101,11 +115,12 @@
                 </div>
 
                 <div class="col-md-6">
-                <select required autocomplete="gender" class="form-control @error('gender') is-invalid @enderror" placeholder="Gender" autofocus>
-                    <option value="{{old('Male')}}">Male</option>
-                    <option value="{{ old('Female')}}">Female</option>
-                </select>
-                    
+                    <select required autocomplete="gender" name="gender"
+                        class="form-control @error('gender') is-invalid @enderror" placeholder="Gender" autofocus>
+                        <option value='Male'>Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
                     @error('gender')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -123,7 +138,7 @@
             </form>
         </div>
         <div class="form-login register-container ">
-           <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <h1 class="title">Login</h1>
                 <div class="social-container">
@@ -131,14 +146,15 @@
                     <a href="#" class="social"><i class="fa fa-google"></i></a>
                     <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                 </div>
-                <span class="text" >or use your email account</span>
+                <span class="text">or use your email account</span>
 
 
 
 
                 <div class="col-md-8">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
+                        name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email"
+                        autofocus>
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -195,13 +211,13 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                   
+
                     <h1>Hello</h1>
                     <p>Sign in here to continue where we left off</p>
                     <button class="ghost" id="Back">Login</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                   
+
                     <h1>Welcome</h1>
                     <p>Sign up here and travel with us</p>
                     <button class="ghost" id="Reset">Sign Up</button>

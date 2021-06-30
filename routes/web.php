@@ -8,6 +8,8 @@ use App\Http\Controllers\BusController;
 use App\Http\Controllers\MpesaController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Drivercontroller;
+use App\Http\Controllers\Auth\GoogleController;
+
 
 
 
@@ -36,6 +38,12 @@ Auth::routes();
 //Route::resource('/adminviews/routes', 'RouteController');
 //Route::resource('routes', [\App\Http\Controllers\RouteController::class]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+//goole
+Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
+//Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+//Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+//
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
 Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('drivers');

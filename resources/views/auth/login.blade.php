@@ -143,7 +143,7 @@
                 <h1 class="title">Login</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                    <a href="{{ url('auth/google') }}" class="social"><i class="fa fa-google"></i></a>
                     <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                 </div>
                 <span class="text">or use your email account</span>

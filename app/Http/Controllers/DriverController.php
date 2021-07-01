@@ -35,7 +35,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        $driver= new driver();
+        $driver= new Driver();
         return view('adminviews.drivers',compact('driver'));
     }
 
@@ -53,7 +53,7 @@ class DriverController extends Controller
             'driver_licence'=> 'required',
         ]
         );
-        $driver = new driver();
+        $driver = new Driver();
         $driver->name=$request->name;
         $driver->phone_number=$request-> phone_number;
         $driver->driver_licence=$request->driver_licence;
@@ -98,7 +98,7 @@ class DriverController extends Controller
         $driver->driver_licence = $request->driver_licence;
         $driver->update();
         Session::put('Success', 'The driver has been edited successfully');
-        return redirect('/adminviews/driver');
+        return redirect('/adminviews.driver');
     
     }
 
@@ -111,7 +111,7 @@ class DriverController extends Controller
     public function destroy(driver $driver)
     {
         $driver ->delete();
-        return redirect('/adminviews/drivers');
+        return redirect('/adminviews.drivers');
     }
 
  

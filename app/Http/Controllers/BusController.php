@@ -19,7 +19,7 @@ class BusController extends Controller
      */
     public function index()
     {
-        $bus =bus::all();
+        $bus =Bus::all();
 
         return view('adminviews.buses', ['bus' => $bus]);
     }
@@ -31,7 +31,7 @@ class BusController extends Controller
      */
     public function create()
     {
-        $bus= new bus();
+        $bus= new Bus();
         return view('adminviews.buses',compact('bus'));
     }
 
@@ -44,7 +44,7 @@ class BusController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'number_plate'=>'required',
+            'plate'=>'required',
             'capacity'=>'required',
             'model'=> 'required',
           
@@ -52,7 +52,7 @@ class BusController extends Controller
         ]
         );
         $bus = new Bus();
-        $bus->number_plate=$request->number_plate;        
+        $bus->number_plate=$request->plate;        
         $bus->capacity=$request-> capacity;
         $bus->model=$request->model;
         $bus->save();

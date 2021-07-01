@@ -61,7 +61,7 @@ Route::view('/selectSeat', 'customerViews.selectSeat');
 //Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
 Route::get('/adminviews/buses', 'App\Http\Controllers\BusController@index');
 Route::get('/adminviews/routes', 'App\Http\Controllers\RouteController@index');
-
+Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
 
 
 Route::get('/routes/create', [RouteController::class, 'create']);

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\MpesaController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Drivercontroller;
 use App\Http\Controllers\Auth\GoogleController;
@@ -71,3 +72,8 @@ Route::post('/buses', [BusController::class, 'store']);
 
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
+<<<<<<< HEAD
+=======
+
+Route::post('payment', [MpesaController::class,'stkpush']);
+>>>>>>> 496d7fff37f46d2239b8a9e649a552a82ebd6f24

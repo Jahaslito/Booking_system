@@ -33,7 +33,7 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-//Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+//b Route::get('/login', [HomeController::class, 'login_register'])->name('login');
 //Route::resource('/adminviews/routes', 'RouteController');
 //Route::resource('routes', [\App\Http\Controllers\RouteController::class]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');

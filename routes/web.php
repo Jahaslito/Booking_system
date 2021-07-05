@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\TripsController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\MpesaController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Drivercontroller;
-use App\Http\Controllers\TripController;
 use App\Http\Controllers\Auth\GoogleController;
 
 
@@ -48,7 +48,7 @@ Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController:
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
 Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('drivers');
-// Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
+Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
 //Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
 //Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
 Route::get('/booking', [HomeController::class, 'booking'])->name('booking');
@@ -62,8 +62,8 @@ Route::view('/selectSeat', 'customerViews.selectSeat');
 //Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
 Route::get('/adminviews/buses', 'App\Http\Controllers\BusController@index');
 Route::get('/adminviews/routes', 'App\Http\Controllers\RouteController@index');
-Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
-Route::get('/adminviews/trips', 'App\Http\Controllers\TripController@index');
+Route::get('/adminviews/drivers','App\Http\Controllers\DriverController@index');
+Route::get('/adminviews/trips','App\Http\Controllers\TripController@index');
 
 
 
@@ -75,18 +75,6 @@ Route::post('/buses', [BusController::class, 'store']);
 
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-Route::get('/trips/create', [TripController::class, 'create']);
-Route::post('/trips', [TripController::class, 'store']);
-
-Route::post('payment', [MpesaController::class,'stkpush']);
-
-Route::post('payment', [MpesaController::class,'stkpush']);
-
-=======
-Route::post('payment', [MpesaController::class,'stkpush']);
->>>>>>> 496d7fff37f46d2239b8a9e649a552a82ebd6f24
->>>>>>> b04cc0c94a3e47ad811bd9962688517527d817df
+Route::get('/trips/create',[TripsController::class, 'create']);
+Route:post('/trips',[TripsController::class,'store']);

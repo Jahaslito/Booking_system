@@ -77,4 +77,4 @@ Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
 
 Route::get('/trips/create',[TripsController::class, 'create']);
-Route:post('/trips',[TripsController::class,'store']);
+Route::post('/trips',[TripsController::class,'store']);

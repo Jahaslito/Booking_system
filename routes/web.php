@@ -75,15 +75,11 @@ Route::post('/buses', [BusController::class, 'store']);
 
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
 Route::get('/trips/create', [TripController::class, 'create']);
 Route::post('/trips', [TripController::class, 'store']);
 
 Route::post('payment', [MpesaController::class,'stkpush']);
-=======
+
 Route::post('payment', [MpesaController::class,'stkpush']);
->>>>>>> 496d7fff37f46d2239b8a9e649a552a82ebd6f24
->>>>>>> b04cc0c94a3e47ad811bd9962688517527d817df
+

@@ -17,6 +17,8 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+					<form action="/trips" method="POST">
+					<?php echo csrf_field(); ?>
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="route" class="block text-sm font-medium text-gray-700">Route</label>
@@ -82,6 +84,7 @@
 					<div class="flex justify-center items-center">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
 					</div>
+					</form>
 				</div>        
     		</div>
 			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
@@ -118,12 +121,14 @@
 			            </tr>
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
+					  <?php $__currentLoopData = $trip; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trip): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			            <tr>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-			                      1
+			                      <?php echo e($trip->id); ?>
+
 			                    </div>
 			                  </div>
 			                </div>
@@ -132,10 +137,10 @@
 			                <div class="text-sm text-gray-900">Nairobi - Kisumu</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">09:00</div>
+			                <div class="text-sm text-gray-900"><?php echo e($trip->depature); ?></div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">01:00</div>
+			                <div class="text-sm text-gray-900"><?php echo e($trip->arrival); ?></div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
@@ -147,13 +152,15 @@
 			                <div class="text-sm text-gray-500">0729832989</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                12-05-2021
+			                <?php echo e($trip->date); ?>
+
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
-			            <tr>
+						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+			            <!-- <tr>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <div class="flex items-center">
 			                  <div class="ml-4">
@@ -222,7 +229,7 @@
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
-			            </tr>
+			            </tr> -->
 
 			            <!-- More people... -->
 			          </tbody>

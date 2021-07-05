@@ -22,7 +22,7 @@ class DriverController extends Controller
     {
         $driver =Driver::all();
 
-        return view('adminviews.drivers', ['driver' => $driver]);
+        return view('adminviews/drivers', ['driver' => $driver]);
     }
 
 
@@ -36,7 +36,7 @@ class DriverController extends Controller
     public function create()
     {
         $driver= new Driver();
-        return view('adminviews.drivers',compact('driver'));
+        return view('adminviews/drivers',compact('driver'));
     }
 
     /**
@@ -59,7 +59,7 @@ class DriverController extends Controller
         $driver->driver_licence=$request->driver_licence;
         $driver->save();
         Session::put('Success','The driver has been added successfully');
-        return redirect('/adminviews.drivers');
+        return redirect('/adminviews/drivers');
     }
 
     /**
@@ -98,7 +98,7 @@ class DriverController extends Controller
         $driver->driver_licence = $request->driver_licence;
         $driver->update();
         Session::put('Success', 'The driver has been edited successfully');
-        return redirect('/adminviews.driver');
+        return redirect('/adminviews/drivers');
     
     }
 
@@ -111,7 +111,7 @@ class DriverController extends Controller
     public function destroy(driver $driver)
     {
         $driver ->delete();
-        return redirect('/adminviews.drivers');
+        return redirect('/adminviews/drivers');
     }
 
  

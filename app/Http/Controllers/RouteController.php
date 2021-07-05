@@ -18,7 +18,7 @@ class RouteController extends Controller
     {
         $route =Route::all();
 
-        return view('adminviews.routes', ['route' => $route]);
+        return view('adminviews/routes', ['route' => $route]);
     }
 
 
@@ -32,7 +32,7 @@ class RouteController extends Controller
     public function create()
     {
         $route= new Route();
-        return view('adminviews.routes',compact('route'));
+        return view('adminviews/routes',compact('route'));
     }
 
     /**
@@ -55,7 +55,7 @@ class RouteController extends Controller
         $route->price=$request->price;
         $route->save();
         Session::put('Success','The route has been added successfully');
-        return redirect('/adminviews.routes');
+        return redirect('/adminviews/routes');
     }
 
     /**

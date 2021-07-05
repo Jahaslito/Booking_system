@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use App\Models\Trip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TripController extends Controller
 {
@@ -14,7 +16,9 @@ class TripController extends Controller
      */
     public function index()
     {
-        //
+        $trip = Trip::all();
+        
+        return view('adminviews/trips',['trip' => $trip]);
     }
 
     /**
@@ -24,7 +28,8 @@ class TripController extends Controller
      */
     public function create()
     {
-        //
+        $trip = new Trip();
+        return view('adminviews/trips',compact('trip'));
     }
 
     /**
@@ -35,7 +40,18 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'departure'=>'required',
+            'arrival'=> 'required',
+            'date'=> 'required',
+        ]);
+        $trip=new Trip();
+        $trip->departure= $request->departure;
+        $trip->arrival = $request->arrival;
+        $trip->date = $request->date;
+        $trip->save();
+        Session::put('Success','The trip has been added successfully');
+        return redirect('/adminviews/trips');
     }
 
     /**
@@ -69,7 +85,12 @@ class TripController extends Controller
      */
     public function update(Request $request, Trip $trip)
     {
-        //
+        $trip->departure= $request->departure;
+        $trip->arrival = $request->arrival;
+        $trip->date = $request->date;
+        $trip->update();
+        Session::put('Success', 'The trip has been edited successfully');
+        return redirect('/adminviews/trips');
     }
 
     /**
@@ -80,6 +101,7 @@ class TripController extends Controller
      */
     public function destroy(Trip $trip)
     {
-        //
+        $trip->delete();
+        return redirect('/adminviews/trips');
     }
 }

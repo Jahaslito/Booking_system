@@ -21,7 +21,7 @@ class BusController extends Controller
     {
         $bus =Bus::all();
 
-        return view('adminviews.buses', ['bus' => $bus]);
+        return view('adminviews/buses', ['bus' => $bus]);
     }
 
     /**
@@ -32,7 +32,7 @@ class BusController extends Controller
     public function create()
     {
         $bus= new Bus();
-        return view('adminviews.buses',compact('bus'));
+        return view('adminviews/buses',compact('bus'));
     }
 
     /**
@@ -57,7 +57,7 @@ class BusController extends Controller
         $bus->model=$request->model;
         $bus->save();
         Session::put('Success','The bus has been added successfully');
-        return redirect('/adminviews.buses');
+        return redirect('/adminviews/buses');
     }
 
     /**

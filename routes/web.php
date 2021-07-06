@@ -78,3 +78,5 @@ Route::post('/drivers', [DriverController::class, 'store']);
 
 Route::get('/trips/create',[TripsController::class, 'create']);
 Route::post('/trips',[TripsController::class,'store']);
+
+Route::post('/payment',[MpesaController::class,'stkpush']) ;

@@ -17,23 +17,28 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+					<form action="/edit_routes" method="POST">
+						@csrf
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="source" class="block text-sm font-medium text-gray-700">Source</label>
-			                <input type="text" name="source" id="source" value="Nairobi" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="source" id="edit_source"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="destination" class="block text-sm font-medium text-gray-700">Destination</label>
-			                <input type="text" name="destination" id="destination" value="Kisumu" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="destination" id="edit_destination"   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-			                <input type="number" name="price" id="price" value="2500" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
-			            </div>					
+			                <input type="number" name="price" id="edit_price"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<input type="text" class="hide_data" name="route_id" id="route_id">			
 					</div>
+					
 					<div class="flex justify-center items-center mb-3">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>
 					</div>
+				</form>
 				</div>        
     		</div>
     		<div id="add_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
@@ -93,33 +98,41 @@
 			            </tr>
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
+						  @php
+							  $counter=1
+						  @endphp
 						@foreach ($route as $route)
 						<tr>
 			              <td class="px-6 py-4 whitespace-nowrap">				
 							
 							
-							
+							<div class="route_id hide_data">
+								{{$route->id}}
+							</div>
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-									{{$route->id}}
+									{{$counter}}
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">{{$route->source}}</div>
+			                <div class="text-sm text-gray-900 route_source">{{$route->source}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">{{$route->destination}}</div>
+			                <div class="text-sm text-gray-900 route_destination">{{$route->destination}}</div>
 			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                {{$route->price}}
+			              <td class="px-6 py-4 whitespace-nowrap">
+			                <div class="text-sm text-gray-900 route_price">{{$route->price}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
+			                <button onclick="editModal({{$counter}})" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
 			              </td>
 			            </tr>
+						@php
+							$counter=$counter+1;
+						@endphp
 						@endforeach
 			           
 			          </tbody>

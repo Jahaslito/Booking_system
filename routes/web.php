@@ -69,6 +69,7 @@ Route::get('/adminviews/trips','App\Http\Controllers\TripController@index');
 
 Route::get('/routes/create', [RouteController::class, 'create']);
 Route::post('/routes', [RouteController::class, 'store']);
+Route::post('/edit_routes', [RouteController::class, 'edit']);
 
 Route::get('/buses/create', [BusController::class, 'create']);
 Route::post('/buses', [BusController::class, 'store']);

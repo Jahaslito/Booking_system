@@ -75,9 +75,23 @@ class RouteController extends Controller
      * @param  \App\Models\route  $route
      * @return \Illuminate\Http\Response
      */
-    public function edit(route $route)
-    {
-        //
+    public function edit(Request $request)
+    {        
+        $request->validate([
+            'source'=>'required',
+            'destination'=>'required',
+            'price'=> 'required',
+        ]
+        );
+
+        $route_id= $request->route_id;
+        $route = Route::find($route_id);
+        $route->source=$request->source;
+        $route->destination=$request-> destination;
+        $route->price=$request->price;
+        $route->save();
+        Session::put('Success','The route has been edited successfully');
+        return redirect('/adminviews/routes');
     }
 
     /**

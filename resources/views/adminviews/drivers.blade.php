@@ -11,35 +11,37 @@
 		<article>
 
 {{-- EDIT Modal --}}
-    		<div id="edit_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
+    		<div id="edit_modal_driver" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
 				<div class="bg-gray-50 p-3 rounded-lg">
 					<div class="flex justify-between items-center">
 						<h4 class="text-lg font-semibold">Edit Driver</h4>
-						<svg onclick="closeEditModal()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeEditModalDriver()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
-
-					
+					<form action="/edit_drivers" method="POST">
+					@csrf
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="name"  readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="name" id="edit_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Numbere</label>
-			                <input type="text" name="phone_number" id="phone_number" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="phone_number" id="edit_phone_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="licence" id="licence"  readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
-			            </div>		
+			                <input type="text" name="licence" id="edit_licence" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>	
+						<input type="text" class="hide_data" name="user_id" id="user_id">	
 					</div>
 
 
-					<div class="flex justify-center items-center">
+					<div class="flex justify-center items-center mb-3">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>
 					</div>
+					</form>
 				</div>        
     		</div>
     		<div id="add_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
@@ -110,31 +112,41 @@
 			            </tr>
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
+					  @php
+					  $counterdriver=1
+					  @endphp
 						  @foreach ($driver as $driver)							  
 						
 			            <tr>
 			              <td class="px-6 py-4 whitespace-nowrap">
+						  <div class="user_id hide_data">
+						  {{$driver->user_id}}
+						  </div>
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-									{{$driver->id}}
+									{{$counterdriver}}
 			                    </div>
 			                  </div>
 			                </div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">{{$driver->name}}</div>
+			                <div class="text-sm text-gray-900 driver_name">{{$driver->name}}</div>
 			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 driver_phone_number">
 			                {{$driver->phone_number}}
 			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 driver_licence">
 			                {{$driver->driver_licence}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
+			                <button onclick="editModalDriver({{$counterdriver}})" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
+							<button class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
 			              </td>
 			            </tr>
+						@php
+						$counterdriver=$counterdriver+1;
+						@endphp
 													
 						@endforeach
 			            <!-- More people... -->

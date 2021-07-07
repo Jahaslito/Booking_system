@@ -79,9 +79,23 @@ class DriverController extends Controller
      * @param  \App\Models\driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function edit(driver $driver)
+    public function edit(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'phone_number'=>'required',
+            'driver_licence'=> 'required',
+        ]
+        );
+
+        $user_id=$request->user_id;
+        $driver= Driver::find($user_id);
+        $driver->name=$request->name;
+        $driver->phone_number=$request->phone_number;
+        $driver->driver_licence=$request->driver_licence;
+        $driver->save();
+        Session::put('Success','The driver has been edited successfully');
+        return redirect('/adminviews/drivers');
     }
 
     /**

@@ -20,15 +20,19 @@
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="plate" class="block text-sm font-medium text-gray-700">Number Plate</label>
-			                <input type="text" name="plate" id="plate" value="KBC 345T" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="plate" id="plate" value="KBC 345T" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity</label>
-			                <input type="text" name="capacity" id="capacity" value="33" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="capacity" id="capacity" value="33" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
-			                <input type="text" name="model" id="model" value="Scania" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="model" id="model" value="Scania" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="route_id" class="block text-sm font-medium text-gray-700">Route</label>
+			                <input type="text" name="route_id" id="route_id" value="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 					</div>
 					<div class="flex justify-center items-center">
@@ -59,6 +63,10 @@
 			                <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
 			                <input type="text" name="model"  placeholder="Scania" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="plate" class="block text-sm font-medium text-gray-700">Route</label>
+			                <input type="text" name="route_id"  placeholder="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
 					</div>
 					<div class="flex justify-center items-center">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75" type="submit">Add</button>
@@ -84,6 +92,9 @@
 			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 			                Model
+			              </th>
+						  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+			                Route
 			              </th>
 			              <th scope="col" class="relative px-6 py-3">
 			                <span class="sr-only">Edit</span>
@@ -115,6 +126,7 @@
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold">
 			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
+							<button class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
 			              </td>
 			            </tr>
 						@endforeach

@@ -128,6 +128,7 @@
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal({{$counter}})" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
+							<button class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
 			              </td>
 			            </tr>
 						@php

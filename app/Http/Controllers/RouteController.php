@@ -120,7 +120,8 @@ class RouteController extends Controller
      */
     public function destroy(route $route)
     {
-        $route ->delete();
+       
+        $route->delete();
         return redirect('/adminviews/routes');
     }
 

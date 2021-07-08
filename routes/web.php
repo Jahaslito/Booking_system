@@ -88,3 +88,5 @@ Route::get('/trips/create',[TripsController::class, 'create']);
 Route::post('/trips',[TripsController::class,'store']);
 
 Route::post('/payment',[MpesaController::class,'stkpush']) ;
+Route::get('/profile',[HomeController::class,'profile']) ;
+Route::get('/aboutUs',[HomeController::class,'aboutUs']) ;

@@ -69,4 +69,14 @@ class HomeController extends Controller
     {
         return view('customerViews.payment');
     }
+
+    public function profile()
+    {
+        return view('customerViews.profile');
+    }
+
+    public function aboutUs()
+    {
+        return view('aboutUs');
+    }
 }

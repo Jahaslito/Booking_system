@@ -82,6 +82,7 @@ Route::post('/delete_buses', [BusController::class, 'destroy']);
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
 Route::post('/edit_drivers',[Drivercontroller::class,'edit']);
+Route::post('/delete_drivers', [DriverController::class, 'destroy']);
 
 Route::get('/trips/create',[TripsController::class, 'create']);
 Route::post('/trips',[TripsController::class,'store']);

@@ -70,10 +70,14 @@ Route::get('/adminviews/trips','App\Http\Controllers\TripController@index');
 Route::get('/routes/create', [RouteController::class, 'create']);
 Route::post('/routes', [RouteController::class, 'store']);
 Route::post('/edit_routes', [RouteController::class, 'edit']);
-// Route::delete('/routes/delete',[RouteController::class, 'destroy']);
+Route::post('/delete_routes', [RouteController::class, 'destroy']);
+// Route::delete('/routes/delete',[RouteController::class, 'destroy']);edit_buses
 
 Route::get('/buses/create', [BusController::class, 'create']);
 Route::post('/buses', [BusController::class, 'store']);
+Route::post('/edit_buses', [BusController::class, 'edit']);
+Route::post('/delete_buses', [BusController::class, 'destroy']);
+
 
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);

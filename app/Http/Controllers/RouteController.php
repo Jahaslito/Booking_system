@@ -118,10 +118,10 @@ class RouteController extends Controller
      * @param  \App\Models\route  $route
      * @return \Illuminate\Http\Response
      */
-    public function destroy(route $route)
+    public function destroy(Request $request)
     {
-       
-        $route->delete();
+        $route=Route::findOrFail($request->route_id);
+        $route ->delete();
         return redirect('/adminviews/routes');
     }
 

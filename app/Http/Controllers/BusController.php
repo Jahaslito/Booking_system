@@ -47,14 +47,14 @@ class BusController extends Controller
             'plate'=>'required',
             'capacity'=>'required',
             'model'=> 'required',
-          
-            
+            'route_id'=> 'required',
         ]
         );
         $bus = new Bus();
         $bus->number_plate=$request->plate;        
-        $bus->capacity=$request-> capacity;
+        $bus->capacity=$request->capacity;
         $bus->model=$request->model;
+        $bus->route_id= $request->route_id;
         $bus->save();
         Session::put('Success','The bus has been added successfully');
         return redirect('/adminviews/buses');
@@ -77,9 +77,25 @@ class BusController extends Controller
      * @param  \App\Models\route  $route
      * @return \Illuminate\Http\Response
      */
-    public function edit(bus $bus)
+    public function edit(Request $request)
     {
-        //
+        $request->validate([
+            'plate'=>'required',
+            'capacity'=>'required',
+            'model'=> 'required',
+            'route_id'=> 'required',
+        ]
+        );
+
+        $bus_id= $request->bus_id;
+        $bus = Bus::find($bus_id);
+        $bus->number_plate=$request->plate;        
+        $bus->capacity=$request->capacity;
+        $bus->model=$request->model;
+        $bus->route_id= $request->route_id;
+        $bus->save();
+        Session::put('Success','The bus has been edited successfully');
+        return redirect('/adminviews/buses');
     }
 
     /**
@@ -107,8 +123,9 @@ class BusController extends Controller
      * @param  \App\Models\route  $route
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bus $bus)
+    public function destroy(Request $request)
     {
+        $bus=Bus::findOrFail($request->bus_id);
         $bus ->delete();
         return redirect('/adminviews/buses');
     }

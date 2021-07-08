@@ -3,8 +3,11 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Routes</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<section>
@@ -128,7 +131,7 @@
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 			                <button onclick="editModal({{$counter}})" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-							<button class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
+							<button onclick="deleteRoute({{$counter}})" class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
 			              </td>
 			            </tr>
 						@php

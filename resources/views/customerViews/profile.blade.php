@@ -95,6 +95,18 @@
                 </div>
                                         
             </div>
+
+            <div class="flex justify-center items-center">
+                <div class="flex flex-row space-x-5 text-right sm:justify-center">
+                    <button onclick="closeProfModal()"
+                        class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
+                    </button>
+                    <button
+                        class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500" id="payButton">Edit
+                    </button>
+
+                </div>
+            </div>
             
         </div>        
     </div>

@@ -84,7 +84,7 @@ class DriverController extends Controller
         $request->validate([
             'name'=>'required',
             'phone_number'=>'required',
-            'driver_licence'=> 'required',
+            'licence'=> 'required',
         ]
         );
 
@@ -92,7 +92,7 @@ class DriverController extends Controller
         $driver= Driver::find($user_id);
         $driver->name=$request->name;
         $driver->phone_number=$request->phone_number;
-        $driver->driver_licence=$request->driver_licence;
+        $driver->driver_licence=$request->licence;
         $driver->save();
         Session::put('Success','The driver has been edited successfully');
         return redirect('/adminviews/drivers');
@@ -122,8 +122,9 @@ class DriverController extends Controller
      * @param  \App\Models\driver  $route
      * @return \Illuminate\Http\Response
      */
-    public function destroy(driver $driver)
+    public function destroy(Request $request)
     {
+        $driver= Driver::findOrFail($request->user_id);
         $driver ->delete();
         return redirect('/adminviews/drivers');
     }

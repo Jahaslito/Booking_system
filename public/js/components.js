@@ -1,11 +1,10 @@
 const edit_modal = document.getElementById('edit_modal');
-const edit_modal_driver = document.getElementById('edit_modal_driver');
+//const edit_modal_driver = document.getElementById('edit_modal_driver');
 const add_modal = document.getElementById('add_modal');
 const profile_modal = document.getElementById('profile_modal');
 
 function editModal(counter) {
 	let index= counter-1;
-	// For Routes
 	let price= document.getElementsByClassName("route_price")[index].innerHTML;
 	let source= document.getElementsByClassName("route_source")[index].innerHTML;
 	let destination= document.getElementsByClassName("route_destination")[index].innerHTML;
@@ -14,16 +13,6 @@ function editModal(counter) {
 	document.getElementById("edit_price").value= price;
 	document.getElementById("edit_destination").value= destination;
 	document.getElementById("route_id").value= route_id;
-	// For Drivers
-	// let index2=counterdriver-1;
-	// let name= document.getElementsByClassName("driver_name")[index2].innerHTML;
-	// let phone_number= document.getElementsByClassName("driver_phone_number")[index2].innerHTML;
-	// let licence= document.getElementsByClassName("driver_licence")[index2].innerHTML;
-	// let user_id= document.getElementsByClassName("user_id")[index2].innerHTML;
-	// document.getElementById("edit_name").value= name;
-	// document.getElementById("edit_phone_number").value= phone_number;
-	// document.getElementById("edit_licence").value= licence;
-	// document.getElementById("user_id").value= user_id;
 	edit_modal.classList.remove('hidden');
 	edit_modal.classList.add('flex');
 }
@@ -42,17 +31,12 @@ function busEditModal(counter) {
 	document.getElementById("bus_id").value= bus_id;
 	let routeOptionId="route"+route_id;
 	console.log("Bus Id: "+bus_id);
-	console.log("Conter: "+counter);
+	console.log("Counter: "+counter);
 	console.log(document.getElementById(routeOptionId).value);
 	document.getElementById(routeOptionId).selected="selected";
 
 	edit_modal.classList.remove('hidden');
 	edit_modal.classList.add('flex');
-}
-
-function closeEditModal(){
-	edit_modal.classList.remove('flex');
-	edit_modal.classList.add('hidden');
 }
 
 function editDriverModal(counterdriver) {
@@ -65,14 +49,19 @@ function editDriverModal(counterdriver) {
 	document.getElementById("edit_phone_number").value= phone_number;
 	document.getElementById("edit_licence").value= licence;
 	document.getElementById("user_id").value= user_id;
-	edit_modal_driver.classList.remove('hidden');
-	edit_modal_driver.classList.add('flex');
+	console.log("Driver Id: " +user_id);
+	console.log("Counter: " +counterdriver);
+	edit_modal.classList.remove('hidden');
+	edit_modal.classList.add('flex');
 }
-function closeEditModalDriver() {
-	edit_modal_driver.classList.remove('flex');
-	edit_modal_driver.classList.add('hidden');
 
+
+function closeEditModal(){
+	edit_modal.classList.remove('flex');
+	edit_modal.classList.add('hidden');
 }
+
+
 
 function addModal() {
 	add_modal.classList.remove('hidden');
@@ -138,6 +127,28 @@ function deleteRoute(counter) {
 				},
 				error: function (result) {
 					alert("Make sure to remove all the buses assigned to this route before you delete the route")
+				}
+			}
+		)
+	}
+}
+
+//Driver Deletion
+function deleteDriver(counterdriver) {
+	let index2= counterdriver-1;
+	let userId= document.getElementsByClassName("user_id")[index2].innerHTML;
+	console.log(userId);
+	if (confirm("Do you want to proceed with deleting the Driver?")) {
+		$.ajax(
+			{
+				url: '/delete_drivers',
+				method: 'post',
+				data:{user_id: userId},
+				success: function (result) {
+					alert("Driver deleted Successfully");
+				},
+				error: function (result) {
+					console.log(result);
 				}
 			}
 		)

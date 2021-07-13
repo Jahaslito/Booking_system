@@ -12133,7 +12133,7 @@ video {
 
 .bg-black {
   --tw-bg-opacity: 1;
-  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  background-color: rgba(0, 0, 0,  0.7);
 }
 
 .bg-white {
@@ -12243,7 +12243,7 @@ video {
 
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
-  background-color: rgba(255, 251, 235, var(--tw-bg-opacity));
+  background-image:url('/images/road3.jpg');
 }
 
 .bg-yellow-100 {

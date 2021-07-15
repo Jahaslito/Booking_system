@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <title>Booking</title>
 </head>
 
@@ -65,6 +67,30 @@
 
             </div>
         </nav>
+
+{{--        <div class="uhh">--}}
+{{--        @if(isset($details))--}}
+{{--            <p> The Search results for your query <b> {{ $query }} </b> are :</p>--}}
+{{--            <h2>Sample User details</h2>--}}
+{{--            <table class="table table-striped">--}}
+{{--                <thead>--}}
+{{--                <tr>--}}
+{{--                    <th>Name</th>--}}
+{{--                    <th>Email</th>--}}
+{{--                </tr>--}}
+{{--                </thead>--}}
+{{--                <tbody>--}}
+{{--                @foreach($details as $user)--}}
+{{--                    <tr>--}}
+{{--                        <td>{{$row1->source}}</td>--}}
+{{--                        <td>{{$row2->destination}}</td>--}}
+{{--                    </tr>--}}
+{{--                @endforeach--}}
+{{--                </tbody>--}}
+{{--            </table>--}}
+{{--        @endif--}}
+{{--    </div>--}}
+
         <div class="justify-center w-auto h-auto mb-20">
 
 
@@ -74,31 +100,26 @@
                 <div class="px-6 py-2 text-left">
                     <p class="text-xl text-white md:text-2xl">Book >> Pay >> Board</p>
                  </div>
-                <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">
+                    <form method="get" action="/booking" role="search">
+                        <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">
                     <div class=" searchFrom">
-{{--                        <input type="text"--}}
-{{--                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
-{{--                        placeholder="From" value="" />--}}
-
-                        <select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                            <select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                                 placeholder="From">
                             <option>From</option>
+
                             @foreach($fromData as $row1)
-                                <option value="{{$row1->id}}">{{$row1->source}}</option>
+                                    <option name="searchSource" value="{{$row1->id}}">{{$row1->source}}</option>
+
                             @endforeach
                         </select>
 
                     </div>
                     <div class="searchTo">
-{{--                        <input type="text"--}}
-{{--                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
-{{--                        placeholder="To" value="" />--}}
-
                         <select name="" select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                                 placeholder="To">
                             <option>To</option>
                             @foreach($toData as $row2)
-                                <option value="{{$row2->id}}">{{$row2->destination}}</option>
+                                <option name="searchDestination" value="{{$row2->id}}">{{$row2->destination}}</option>
                             @endforeach
                         </select>
 
@@ -108,8 +129,7 @@
                         <input type="Date"
                         class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         placeholder="Date" id="datefield"/>
-
-                        <script>
+                            <script>
                                 var today = new Date();
                                 var dd = today.getDate();
                                 var mm = today.getMonth()+1; //January is 0!
@@ -127,18 +147,10 @@
                     </div>
                     <div class="justify-center searchBus">
 
-{{--                        <form method="get" action="route{{customerViews.booking}}">--}}
-{{--                            <form action="{{ route('booking.show') }}" method="get">--}}
                         <button class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search Bus</button>
-                        </form>
-
-{{--                        if (count($buses) > 0) {--}}
-{{--                        @foreach ($buses as $bus)--}}
-{{--                        {{$row2->destination}};--}}
-{{--                        }--}}
-{{--                        @endforeach--}}
 
                     </div>
+                            </form>
                 </div>
             </div>
 
@@ -148,17 +160,20 @@
                 <div class="w-auto text-center md:content-center">
                     <h1 class="mt-12 text-2xl sm:text-3xl ">Search Results</h1>
                 </div>
-
                 @foreach($triproutes as $triproute)
+
+                <form method="post" action="">
+
                 <div class="block w-auto h-auto p-8 space-y-4 bg-white shadow-lg sm:flex sm:flex-row sm:space-y-0">
                     <img src="{{url('/images/bus.jpg')}} " alt="Bus Image" class="hidden w-auto sm:block sm:h-24">
                     <div class="sm:ml-8 md:ml-16">
-                        <h2 class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">{{$triproute->source}} - {{$triproute->destination}}</h2>
+                        <h2  class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">{{$triproute->source}} - {{$triproute->destination}}</h2>
                         <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
                             <i class="w-6 pt-2 mx-1 text-red-600 fa fa-map-marker"></i>
                             <h3 class="text-red-600 sm:text-sm md:text-xl">Boarding Place</h3>
                         </div>
-                        <p>{{$triproute->boarding_place}}</p>
+                        <p name="boarding_place"> {{$triproute->boarding_place}}</p>
+
 
                     </div>
                     <div class="content-start block w-auto sm:ml-8 md:ml-16 ">
@@ -181,11 +196,45 @@
                         <h6 class="text-xl text-red-600 ">Price</h6>
                         <p class="text-xl text-green-500">KES {{$triproute->price}}</p>
                     </div>
+                </form>
+
+                    {{ session()->put('source',$triproute->source)}}
+                    {{ session()->put('destination',$triproute->destination)}}
+                    {{ session()->put('boarding_place',$triproute->boarding_place)}}
+                    {{ session()->put('date',$triproute->date)}}
+                    {{ session()->put('departure',$triproute->departure)}}
+                    {{ session()->put('price',$triproute->price)}}
+
+
+
+                <?php
+//                session_start();
+//                    if(isset($triproute->source)){
+//                        $_SESSION["source"] = $triproute->source;
+//
+//                    }
+//                    if(isset($triproute->destination)){
+//                        $_SESSION["destination"] = ($triproute->destination);
+//                    }
+//                    if(isset($triproute->boarding_place)){
+//                        $_SESSION["boarding_place"] = ($triproute->boarding_place);
+//                    }
+//                    if(isset($triproute->departure)){
+//                        $_SESSION["departure"] = ($triproute->departure);
+//                    }
+//                    if(isset($triproute->date)){
+//                        $_SESSION["date"] = ($triproute->date);
+//                    }
+//                    if(isset($triproute->price)){
+//                        $_SESSION["price"] = ($triproute->price);
+//                    }
+                ?>
+
                     <div class="content-center pt-8 ml-12">
                         <div x-data="{ showModal : false }">
 
+
                             <form action="/selectSeat" method="get">
-{{--                                <button type="submit" class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue</button>--}}
 
                             <button class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Select
                                 Seat</button>
@@ -225,13 +274,6 @@
                                                 <div class="w-8"></div>
                                                 <i class="fas fa-steering-wheel"></i>
                                             </div>
-
-{{--                                            @foreach($seats as $seat)--}}
-{{--                                                {{ $seat->capacity }};--}}
-{{--                                                if({{ $seat->capacity }}==24){--}}
-{{--                                            @endforeach--}}
-{{--                                            }--}}
-
 
                                             <div class="flex flex-row p-2 ">
                                                 <div
@@ -344,80 +386,8 @@
                                                 </div>
 
                                             </div>
-                                            <div class="flex flex-row p-2 ">
-                                                <div
-                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                                                    <input type="button"
-                                                        class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                                                        value="4A">
-                                                    <div
-                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="w-8"></div>
-                                                <div class="w-8"></div>
-                                                <div
-                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                                                    <input type="button"
-                                                        class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                                                        value="4B">
-                                                    <div
-                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="w-8"></div>
-                                                <div class="w-8"></div>
-                                                <div
-                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                                                    <input type="button"
-                                                        class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                                                        value="4C">
-                                                    <div
-                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="flex flex-row p-2 ">
-                                                <div
-                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                                                    <input type="button"
-                                                        class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                                                        value="5A">
-                                                    <div
-                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="w-8"></div>
-                                                <div class="w-8"></div>
-                                                <div
-                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                                                    <input type="button"
-                                                        class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                                                        value="5B">
-                                                    <div
-                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="w-8"></div>
-                                                <div class="w-8"></div>
-                                                <div
-                                                    class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                                                    <input type="button"
-                                                        class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                                                        value="5C">
-                                                    <div
-                                                        class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                                                    </div>
-                                                </div>
-
-                                            </div>
 
 
                                             <div class="flex flex-row p-2 ">
@@ -586,18 +556,15 @@
                                     </div>
 
 
-                                    <div class="flex flex-row space-x-5 text-right sm:justify-center">
-                                        <button @click="showModal = !showModal"
-                                            class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
-                                        </button>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+
+            @endforeach
+
 
                 </div>
                 <div class="block w-full">

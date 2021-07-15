@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +18,7 @@
 <body>
 	<nav class="flex flex-wrap items-center p-3 bg-red-600">
       <a href="/home" class="inline-flex items-center p-2 mr-4">
-        
+
         <span class="text-xl font-bold tracking-wide text-white uppercase"
           >Logo</span
         >
@@ -51,7 +54,7 @@
           >
             <span>Contact Us</span>
           </a>
-          
+
         </div>
       </div>
     </nav>
@@ -75,30 +78,57 @@
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="source" class="block text-sm font-medium text-gray-700">From</label>
-			                <input type="text" name="source" id="source" value="Mombasa" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="source" id="source" placeholder="Source" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="destination" class="block text-sm font-medium text-gray-700">To</label>
-			                <input type="text" name="destination" id="destination" value="Kisumu" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="destination" id="destination" placeholder="Destination" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
-						<div class="col-span-6 sm:col-span-3">
-			                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-			                <input type="date" name="date" id="date" value="12-05-2021" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
-			            </div>
-												
+{{--						<div class="col-span-6 sm:col-span-3">--}}
+{{--			                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>--}}
+{{--			                <input type="date" name="date" id="datefield" value="2021-05-12" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">--}}
+{{--                            <script>--}}
+{{--                                var today = new Date();--}}
+{{--                                var dd = today.getDate();--}}
+{{--                                var mm = today.getMonth()+1; //January is 0!--}}
+{{--                                var yyyy = today.getFullYear();--}}
+{{--                                if(dd<10){--}}
+{{--                                    dd='0'+dd--}}
+{{--                                }--}}
+{{--                                if(mm<10){--}}
+{{--                                    mm='0'+mm--}}
+{{--                                }--}}
+
+{{--                                today = yyyy+'-'+mm+'-'+dd;--}}
+{{--                                document.getElementById("datefield").setAttribute("min", today);--}}
+{{--                            </script>--}}
+{{--                        </div>--}}
+
 					</div>
 					<div class="flex justify-center items-center">
 						<div class="flex flex-row space-x-5 text-right sm:justify-center">
 	                        <button onclick="closeTripModal()"
 	                            class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
 	                        </button>
-	                        <button
-	                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Modify
-	                        </button>
+
+	                        <button value="modify"
+	                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Modify Details
+
+                                <script>
+                                    var source = document.getElementById("source").value;
+                                    var destination = document.getElementById("destination").value;
+                                </script>
+
+
+{{--                                {{ session()->flush("source","destination") }}--}}
+{{--                                {{ session()->put('source',source)}}--}}
+{{--                                {{ session()->put('destination',destination)}}--}}
+
+                                </button>
 
 	                    </div>
 					</div>
-				</div>        
+				</div>
     		</div>
 
     		<div id="payment_modal" class="fixed top-0 bottom-0 left-0 right-0 z-50 hidden items-center justify-center overflow-auto text-gray-500 bg-black bg-opacity-40">
@@ -129,7 +159,7 @@
 			                <label for="price" class="block text-sm font-medium text-gray-700">Total Price</label>
 			                <input readonly type="number" name="price" id="price" value="5000" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
-												
+
 					</div>
 					<div class="flex justify-center items-center">
 						<div class="flex flex-row space-x-5 text-right sm:justify-center">
@@ -142,29 +172,49 @@
 
 	                    </div>
 					</div>
-				</div>        
+				</div>
     		</div>
     <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 divide-x divide-gray-500
     ">
     	<div class="ml-2">
+
     		<h3>Trip Details</h3>
-    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<th>
+
+
+            <th> <p> <b>Source:</b> {{ session()->get("source") }}</p>
+                <p> <b>Destination:</b> {{ session()->get("destination") }}</p>
+                <p> <b>Boarding place:</b> {{ session()->get("boarding_place") }}</p>
+                <p> <b>Date:</b> {{ session()->get("date") }}</p>
+                <p> <b>Time:</b> {{ session()->get("departure") }}</p>
+                <p> <b>Price:</b>
+                    <?php
+                    $price = session()->get("price")*2;
+                    echo $price;
+
+                    ?>
+{{--                    {{ session()->get("price") }}</p>--}}
+
+<button></button>
+
+{{--                <p>{{ session()->flush("price") }}</p>--}}
+{{--                <p> <b>Price:</b> {{ session()->get("price") }}</p>--}}
+                {{--           <p> <b>Destination:</b> <?php echo $_SESSION['destination']; ?> </p>--}}
+{{--           <p> <b>Boarding Place:</b> <?php echo $_SESSION['boarding_place']; ?> </p>--}}
+{{--            <p> <b>Date:</b> <?php echo ($_SESSION['date']); ?> </p>--}}
+{{--            <p> <b>Time:</b> <?php echo ($_SESSION['departure']); ?> </p>--}}
+{{--            <p> <b>Number of Seats:</b> <?php echo ($_SESSION['seatNumber']); ?> </p>--}}
+            </th>
+
+
+
     		<br>
     		<button onclick="tripModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Modify</button>
     	</div>
     	<div class="pl-4">
     		<h3>Payment Details</h3>
-    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    		<p></p>
     		<br>
     		<button onclick="paymentModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Confirm Payment</button>
     	</div>

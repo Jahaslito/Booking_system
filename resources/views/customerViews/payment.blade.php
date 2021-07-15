@@ -190,7 +190,7 @@
                 <p> <b>Time:</b> {{ session()->get("departure") }}</p>
                 <p> <b>Price:</b>
                     <?php
-                    $price = session()->get("price")*2;
+                    $price = session()->get("price");
                     echo $price;
 
                     ?>

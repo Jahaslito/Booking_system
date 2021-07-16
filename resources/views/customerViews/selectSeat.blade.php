@@ -1,4 +1,4 @@
-<!<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!<!D<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,359 +29,94 @@
          x-transition:leave-end="opacity-0 scale-90 translate-y-1">
 
         <span class="block mb-3 text-2xl font-bold">Select Seat</span>
-        <div class="w-full justify-items-center">
-            <div class="block p-2 pb-4 border-4 border-gray-400 rounded-md ">
-                <div class="flex flex-row p-2 mt-2">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="CD">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
+
+        <div class="w-full justify-items-center" style="width: 50em;">
+            <div class="block p-2 pb-4 border-4 border-gray-400 rounded-md" style="width: ">
+                <div  style="align-content: baseline;">
+                    <div style="display:inline-block;width:5em;height:5em;margin-right: 10px;  margin-left: 43em;" class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+                        <label class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 ">Driver</label>
+                        <div class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                         </div>
                     </div>
+                    <form action="/payment" method="post">
+
+                    @foreach($seats as $seat)
+                    <div style="display:inline-block;width:5em; margin-right: 12em;" class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+                        <input type="checkbox" name="CheckBox[]" id="seatNumber[]" class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 checked:red background-color:red"
+                               value="{{$seat->seat_ID+1}}"><label class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 ">
+                        {{$seat->seat_ID+1}}</label>
+                        <div class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
+                        </div>
+                    </div>
+                    @endforeach
+
+                        <?php
+                        //session_start();
+
+//                        if(isset($seat->seatID)){
+//                            $_SESSION["seatNumber"] = ($seat->seat_ID);
+//                            }
+
+//                        $values = array();
+////                        $quantities = array();
+//
+//                        foreach($_POST['CheckBox'] as $key => $value){
+//                            $_SESSION["seatNumber"] = array_push($values, $value);
+//                        }
+
+//                        $quantities = $_POST['Quantities'];
+//                        $i=0;
+//
+//                        foreach ($quantities as $q){
+//                            if($q){
+//                                $values[$i] = $values[$i].','.$q;
+//                                $i++;
+//                            }
+
+//                        foreach ($_POST['CheckBox'] as $key => $value) {
+//
+//                            if (empty($value) || $value == 0) {
+//                                // wasn't ordered!  Skip to the next.
+//                                continue;
+//                            }
+//
+//                            $id = $_POST['seatNumber'][$key];
+//                            echo $id;
+                            // Now you know they want $value of pizza id $id.  You can look
+                            // up the price, name, etc, from your DB, same as you did to
+                            // display them on the form in the first place.
+                        //}
+
+                        ?>
+
+
                     <div class="w-8"></div>
                     <i class="fas fa-steering-wheel"></i>
-                </div>
-
-                {{--                                            @foreach($seats as $seat)--}}
-                {{--                                                {{ $seat->capacity }};--}}
-                {{--                                                if({{ $seat->capacity }}==24){--}}
-                {{--                                            @endforeach--}}
-                {{--                                            }--}}
-
-
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="1A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
                     </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="1B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="1C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="2A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="2B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="2C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="3A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="3B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="3C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="4A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="4B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="4C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="5A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="5B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="5C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="6A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="6B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="6C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="7A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="7B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="7C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="8A">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="8B">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
-                    <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-
-                        <input type="button"
-                               class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 "
-                               value="8C">
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-
-                    </div>
-
-
-                </div>
-
             </div>
         </div>
-
         <div class="w-full justify-items-center ">
             <div class="block p-2 pb-4">
                 <div class="flex flex-row p-2 ">
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+                    <div class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                        <div
-                            class="w-8 h-6 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 rounded-t-0"
-                            value=""></div>
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
+                        <div class="w-8 h-6 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 rounded-t-0" value="">
+
+                        </div>
+                        <div class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                         </div>
                     </div>
+                    <label><b>Occupied</b></label>
                     <div class="w-8"></div>
-                    <div class="w-8"></div>
-                    <div
-                        class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
 
-                        <div
-                            class="w-8 h-6 font-bold text-gray-500 bg-red-600 border-0 rounded-sm rounded-t-0"
-                            value=""></div>
-                        <div
-                            class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
-                        </div>
-                    </div>
+                    <div class="w-8"></div>
+                    <div class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
+
+{{--                        <div class="w-8 h-6 font-bold text-gray-500 bg-red-600 border-0 rounded-sm rounded-t-0" value=""></div>--}}
+                        <div class="">
+                            <input class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm" type="checkbox" checked="checked" disabled required></div>
+                    </div><label><b>Selected</b></label>
                     <div class="w-8"></div>
                     <div class="w-8"></div>
                     <div
@@ -389,21 +124,16 @@
 
                         <div
                             class="w-8 h-6 font-bold text-gray-500 bg-gray-400 border-0 rounded-sm rounded-t-0"
-                            value=""></div>
+                            value="Available"></div>
                         <div
                             class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                         </div>
-                    </div>
-
-
+                    </div><label><b>Available</b></label>
                 </div>
-                <div class="flex flex-row-reverse justify-between">
-                    <div>Occupied</div>
-                    <div>Selected</div>
-                    <div>Available</div>
+
                 </div>
             </div>
-        </div>
+
 
         <div class="flex flex-row space-x-5 text-right sm:justify-center">
             <form action="/booking" method="get">
@@ -413,9 +143,10 @@
             <form action="/payment" method="get">
                 {{--                                <button type="submit" class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue</button>--}}
 
-                <button class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500" required>Select
+                <button type="submit" class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500" required>Select
                     Seat</button>
             </form>
+        </div></form>
 
 </body>
 </html>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trips</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<section>
@@ -17,32 +19,64 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
-					<form action="/trips" method="POST">
+					<form action="/edit_trips" method="POST">
 					@csrf
 					<div class="grid grid-cols-6 gap-6 p-4">
+					@php
+							$route_list= App\Models\route::all();
+						@endphp	
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="route" class="block text-sm font-medium text-gray-700">Route</label>
-			                <input type="text" name="route" id="route" value="Nairobi - Kisumu" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="route_id" class="block text-sm font-medium text-gray-700">Route</label>
+			                <select name="route_id" id="route_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+								@foreach ($route_list as $route)
+								<option value="{{$route->id}}" id="route{{$route->id}}">{{$route->source. " - ". $route->destination}}</option>
+								@endforeach								
+							</select>
+							{{-- <input type="text" name="route_id" id="route_id" value="" class="hide_data"> --}}
+							<input type="text" name="bus_id" id="bus_id" value="" class="hide_data">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-			                <input type="text" name="date" id="date" value="12-05-2021" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="date" id="edit_date" value="12-05-2021" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="depature" class="block text-sm font-medium text-gray-700">Depature</label>
-			                <input type="text" name="depature" id="depature" value="09:00" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="depature" id="edit_depature" value="09:00" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="arrival" class="block text-sm font-medium text-gray-700">Arrival</label>
-			                <input type="text" name="arrival" id="arrival" value="01:00" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="arrival" id="edit_arrival" value="01:00" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="available" class="block text-sm font-medium text-gray-700">Seats Available</label>
-			                <input type="text" name="available" id="available" value="14" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="available" id="edit_available" value="14" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
+						@php
+							$driver_list= App\Models\driver::all();
+						@endphp	
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver" class="block text-sm font-medium text-gray-700">Driver</label>
-			                <input type="text" name="driver" id="driver" value="Kimani Njeru" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							<select name="driver_id" id="driver_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							@foreach ($driver_list as $driver)
+							<option value="{{$driver->id}}" id="driver{{$driver->id}}">{{$driver->name}}</option>
+							@endforeach
+							</select>
+			                {{--<input type="text" name="driver_id" id="driver_id" value="" class="hide_data">--}}
+							<input type="text" name="trip_id" id="trip_id" value="" class="hide_data">
+			            </div>
+						@php
+							$bus_list= App\Models\bus::all();
+						@endphp	
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="bus" class="block text-sm font-medium text-gray-700">Bus</label>
+							<select name="driver_id" id="driver_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							@foreach ($bus_list as $bus)
+							<option value="{{$bus->id}}" id="bus{{$bus->id}}">{{$bus->number_plate}}</option>
+							@endforeach
+							</select>
+			                {{--<input type="text" name="bus_id" id="bus_id" value="" class="hide_data">--}}
+							<input type="text" name="trip_id" id="trip_id" value="" class="hide_data">
+
 			            </div>
 						
 					</div>
@@ -79,6 +113,10 @@
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver" class="block text-sm font-medium text-gray-700">Driver</label>
 			                <input type="text" name="driver" id="driver" placeholder="Kimani Njeru"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="bus" class="block text-sm font-medium text-gray-700">Bus</label>
+			                <input type="text" name="bus" id="bus" placeholder="KDB 112A"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 					</div>
 					<div class="flex justify-center items-center">

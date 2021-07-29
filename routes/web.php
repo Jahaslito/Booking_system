@@ -3,15 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
+<<<<<<< HEAD
 use App\Http\Controllers\TripController;
+=======
+>>>>>>> a470203825482f30e959cc501fdc234f785b4423
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Drivercontroller;
 use App\Http\Controllers\Auth\GoogleController;
-
-
+use App\User;
+use Illuminate\Support\Facades\Input;
+//use Symfony\Component\Console\Input\Input;
 
 
 /*
@@ -35,10 +40,12 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-//b Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+//Route::get('/login', [HomeController::class, 'login_register'])->name('login');
 //Route::resource('/adminviews/routes', 'RouteController');
 //Route::resource('routes', [\App\Http\Controllers\RouteController::class]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
 //goole
 Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
@@ -57,38 +64,51 @@ Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 Route::get('/booking', [RouteController::class, 'search']);
 //Route::get('/payment',[BookingController::class,'index']);
 //Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
-Route::view('/selectSeat', 'customerViews.selectSeat');
+//Route::view('/selectSeat', 'customerViews.selectSeat');
+Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('selectSeat');
 //Route::get('/booking',[BookingController::class,'selectBus']);
 //Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
 Route::get('/adminviews/buses', 'App\Http\Controllers\BusController@index');
 Route::get('/adminviews/routes', 'App\Http\Controllers\RouteController@index');
-Route::get('/adminviews/drivers','App\Http\Controllers\DriverController@index');
-Route::get('/adminviews/trips','App\Http\Controllers\TripController@index');
 
 
 
 Route::get('/routes/create', [RouteController::class, 'create']);
 Route::post('/routes', [RouteController::class, 'store']);
-Route::post('/edit_routes', [RouteController::class, 'edit']);
-Route::post('/delete_routes', [RouteController::class, 'destroy']);
-// Route::delete('/routes/delete',[RouteController::class, 'destroy']);edit_buses
 
 Route::get('/buses/create', [BusController::class, 'create']);
 Route::post('/buses', [BusController::class, 'store']);
-Route::post('/edit_buses', [BusController::class, 'edit']);
-Route::post('/delete_buses', [BusController::class, 'destroy']);
-
 
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
-Route::post('/edit_drivers',[Drivercontroller::class,'edit']);
-Route::post('/delete_drivers', [DriverController::class, 'destroy']);
 
+<<<<<<< HEAD
 Route::get('/trips/create',[TripController::class, 'create']);
 Route::post('/trips',[TripController::class,'store']);
 Route::post('/edit_trips',[TripController::class,'edit']);
 Route::post('/delete_trips',[TripController::class,'destroy']);
+=======
+Route::post('payment', [MpesaController::class,'stkpush']);
 
-Route::post('/payment',[MpesaController::class,'stkpush']) ;
-Route::get('/profile',[HomeController::class,'profile']) ;
-Route::get('/aboutUs',[HomeController::class,'aboutUs']) ;
+//Route::get ( '/', function () {
+//    return view ( 'welcome' );
+//} );
+//Route::any ( '/search', function () {
+//    $searchSource = Input::get ( "searchSource" );
+//    $searchDestination = Input::get ( "searchDestination" );
+//    $user = Booking::where ( 'source', 'LIKE', '%' . $searchSource . '%' )->andWhere ( 'destination', 'LIKE', '%' . $searchDestination . '%' )->get ();
+//    if (count ( $user ) > 0)
+//        return view ( 'customerViews.booking' )->withDetails ( $user )->withQuery ( $searchSource,$searchDestination );
+//    else
+//        return view ( 'customerViews.booking' )->withMessage ( 'No Details found. Try to search again !' );
+//} );
+
+
+//Route::get('/search','SearchController@index')->name('search');
+//Route::get('/search', 'SearchController@index')->name('search');;
+
+
+Route::get('/searchTrip', [SearchController::class, 'index'])->name('searchTrip');
+Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('searchTrip');
+>>>>>>> a470203825482f30e959cc501fdc234f785b4423
+

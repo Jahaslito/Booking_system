@@ -40,6 +40,8 @@ Auth::routes();
 //Route::resource('/adminviews/routes', 'RouteController');
 //Route::resource('routes', [\App\Http\Controllers\RouteController::class]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
 //goole
 Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);

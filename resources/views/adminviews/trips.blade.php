@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Trips</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
@@ -33,15 +34,15 @@
 								@endforeach								
 							</select>
 							{{-- <input type="text" name="route_id" id="route_id" value="" class="hide_data"> --}}
-							<input type="text" name="bus_id" id="bus_id" value="" class="hide_data">
+							<input type="text" name="trip_id" id="trip_id" value="" class="hide_data">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
 			                <input type="text" name="date" id="edit_date" value="12-05-2021" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
-			                <label for="depature" class="block text-sm font-medium text-gray-700">Depature</label>
-			                <input type="text" name="depature" id="edit_depature" value="09:00" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="departure" class="block text-sm font-medium text-gray-700">departure</label>
+			                <input type="text" name="departure" id="edit_departure" value="09:00" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="arrival" class="block text-sm font-medium text-gray-700">Arrival</label>
@@ -69,7 +70,7 @@
 						@endphp	
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="bus" class="block text-sm font-medium text-gray-700">Bus</label>
-							<select name="driver_id" id="driver_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							<select name="bus_id" id="bus_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 							@foreach ($bus_list as $bus)
 							<option value="{{$bus->id}}" id="bus{{$bus->id}}">{{$bus->number_plate}}</option>
 							@endforeach
@@ -93,18 +94,23 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+					<form action="/trips" method="POST">
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="route" class="block text-sm font-medium text-gray-700">Route</label>
-			                <input type="text" name="route" id="route" placeholder="Nairobi - Kisumu"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							<select name="route_id" id="route_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+								@foreach ($route_list as $route)
+								<option value="{{$route->id}}" id="route{{$route->id}}">{{$route->source. " - ". $route->destination}}</option>
+								@endforeach								
+							</select>
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
 			                <input type="date" name="date" id="date" placeholder="12-05-2021"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
-			                <label for="depature" class="block text-sm font-medium text-gray-700">Depature</label>
-			                <input type="time" name="depature" id="depature" placeholder="09:00"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="departure" class="block text-sm font-medium text-gray-700">departure</label>
+			                <input type="time" name="departure" id="departure" placeholder="09:00"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="arrival" class="block text-sm font-medium text-gray-700">Arrival</label>
@@ -112,11 +118,23 @@
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver" class="block text-sm font-medium text-gray-700">Driver</label>
-			                <input type="text" name="driver" id="driver" placeholder="Kimani Njeru"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							<select name="driver_id" id="driver_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							@foreach ($driver_list as $driver)
+							<option value="{{$driver->id}}" id="driver{{$driver->id}}">{{$driver->name}}</option>
+							@endforeach
+							</select>
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="bus" class="block text-sm font-medium text-gray-700">Bus</label>
-			                <input type="text" name="bus" id="bus" placeholder="KDB 112A"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							<select name="bus_id" id="bus_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+							@foreach ($bus_list as $bus)
+							<option value="{{$bus->id}}" id="bus{{$bus->id}}">{{$bus->number_plate}}</option>
+							@endforeach
+							</select>
+			            </div>
+						<div class="col-span-6 sm:col-span-3">
+			                <label for="seats_available" class="block text-sm font-medium text-gray-700">Seats Available</label>
+			                <input type="text" name="available" id="available" placeholder="30"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 					</div>
 					<div class="flex justify-center items-center">
@@ -135,11 +153,14 @@
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 			                Number
 			              </th>
+						  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+			                Bus
+			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 			                Route
 			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-			                Depature
+			                departure
 			              </th>
 			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 			                Arrival
@@ -159,114 +180,63 @@
 			            </tr>
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
+						  @php
+						  $counter=1
+						  @endphp
 					  @foreach ($trip as $trip)
 			            <tr>
 			              <td class="px-6 py-4 whitespace-nowrap">
 			                <div class="flex items-center">
 			                  <div class="ml-4">
 			                    <div class="text-sm font-medium text-gray-900">
-			                      {{$trip->id}}
+			                      {{ $counter }}
 			                    </div>
+								<div class="hide_data trip_id">{{ $trip->id }}</div>
 			                  </div>
 			                </div>
 			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Nairobi - Kisumu</div>
+						  @php
+						  $bus=App\Models\bus::find($trip->bus_id)
+						  @endphp
+						  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 trip_bus_plate">
+			               {{$bus->number_plate}}
+			              </td>
+						  @php
+							  $route= App\Models\route::find($trip->route_id); 
+						  @endphp
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 trip_route_id">
+						  {{ $route->source." - ".$route->destination}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">{{$trip->depature}}</div>
+			                <div class="text-sm text-gray-900 trip_departure">{{$trip->departure}}</div>
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">{{$trip->arrival}}</div>
+			                <div class="text-sm text-gray-900 trip_arrival">{{$trip->arrival}}</div>
 			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
+			              <td class="px-6 py-4 whitespace-nowrap trip_capacity">
 			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-			                  14
+			                  {{$trip->seats_available}}
 			                </span>
 			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Kimani Njeru</div>
-			                <div class="text-sm text-gray-500">0729832989</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+						  @php
+						  $driver= App\Models\driver::find($trip->driver_id)
+						  @endphp
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 trip_driver_name">
+							  {{$driver->name}}
+						  </td>
+			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 trip_date">
 			                {{$trip->date}}
 			              </td>
 			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-							<button class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
+			                <button onclick="tripEditModal({{$counter}})" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
+							<button onclick="deleteTrip({{$counter}})" class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Delete</button>
 			              </td>
 			            </tr>
+						@php
+						$counter=$counter+1;
+						@endphp
 						@endforeach
-			            <!-- <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      2
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Nairobi - Kisumu</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">09:00</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">01:00</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-			                  14
-			                </span>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Kimani Njeru</div>
-			                <div class="text-sm text-gray-500">0729832989</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                12-05-2021
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr>
-			            <tr>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="flex items-center">
-			                  <div class="ml-4">
-			                    <div class="text-sm font-medium text-gray-900">
-			                      3
-			                    </div>
-			                  </div>
-			                </div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Nairobi - Kisumu</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">09:00</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">01:00</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-			                  14
-			                </span>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap">
-			                <div class="text-sm text-gray-900">Kimani Njeru</div>
-			                <div class="text-sm text-gray-500">0729832989</div>
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-			                12-05-2021
-			              </td>
-			              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-			                <button onclick="editModal()" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-			              </td>
-			            </tr> -->
+			           
 
 			            <!-- More people... -->
 			          </tbody>

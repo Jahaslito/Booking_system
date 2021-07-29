@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\TripsController;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\MpesaController;
@@ -84,8 +84,10 @@ Route::post('/drivers', [DriverController::class, 'store']);
 Route::post('/edit_drivers',[Drivercontroller::class,'edit']);
 Route::post('/delete_drivers', [DriverController::class, 'destroy']);
 
-Route::get('/trips/create',[TripsController::class, 'create']);
-Route::post('/trips',[TripsController::class,'store']);
+Route::get('/trips/create',[TripController::class, 'create']);
+Route::post('/trips',[TripController::class,'store']);
+Route::post('/edit_trips',[TripController::class,'edit']);
+Route::post('/delete_trips',[TripController::class,'destroy']);
 
 Route::post('/payment',[MpesaController::class,'stkpush']) ;
 Route::get('/profile',[HomeController::class,'profile']) ;

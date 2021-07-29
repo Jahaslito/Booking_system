@@ -16,6 +16,41 @@ function editModal(counter) {
 	edit_modal.classList.remove('hidden');
 	edit_modal.classList.add('flex');
 }
+//For Trips
+function tripEditModal(counter) 
+{
+	let index=counter-1;
+	let trip_id=document.getElementsByClassName("trip_id")[index].innerHTML;
+	let route_id=document.getElementsByClassName("trip_route_id")[index].innerHTML;
+	let departure= document.getElementsByClassName("trip_departure")[index].innerHTML;
+	let arrival= document.getElementsByClassName("trip_arrival")[index].innerHTML;
+	let capacity= document.getElementsByClassName("trip_capacity")[index].innerHTML;
+	let driver_name= document.getElementsByClassName("trip_driver_name")[index].innerHTML;
+	let bus_plate= document.getElementsByClassName("bus_id")[index].innerHTML;
+	let date= document.getElementsByClassName("trip_date")[index].innerHTML;
+	document.getElementById("trip_id").value=trip_id;
+	document.getElementById("route_id").value=route_id;
+	document.getElementById("edit_departure").value=departure;
+	document.getElementById("edit_arrival").value=arrival;
+	document.getElementById("edit_available").value=capacity;
+	document.getElementById("driver_id").value=driver_name;
+	document.getElementById("bus_id").value=bus_plate;
+	document.getElementById("edit_date").value=date;
+	let routeOptionId="route"+route_id;
+	let driverOptionId="driver"+driver_id;
+	let busOptionId="bus"+bus_id;
+	console.log("Trip Id: "+trip_id);
+	console.log("Counter: "+counter);
+	console.log(document.getElementById(routeOptionId).value);
+	console.log(document.getElementById(driverOptionId).value);
+	console.log(document.getElementById(busOptionId).value);
+	document.getElementById(routeOptionId).selected="selected";
+	document.getElementById(driverOptionId).selected="selected";
+	document.getElementById(busOptionId).selected="selected";
+
+	edit_modal.classList.remove('hidden');
+	edit_modal.classList.add('flex');
+}
 // For Buses
 function busEditModal(counter) {
 	let index= counter-1;
@@ -132,6 +167,29 @@ function deleteRoute(counter) {
 		)
 	}
 }
+//Trip Deletion
+function deleteTrip(counter) 
+{
+	let index= counter-1;
+	let tripId= document.getElementsByClassName("trip_id")[index].innerHTML;
+	console.log(tripId);
+	if (confirm("Do you want to proceed with deleting the Trip?"))
+	{
+		$.ajax(
+			{
+				url:'/delete_trips',
+				method: 'post',
+				data:{trip_id:tripId},
+				success: function (result) {
+					alert("Trip Deleted Successfully");
+				},
+				error: function (result) {
+					console.log(result);
+				}
+			}
+		)
+	}
+}
 
 //Driver Deletion
 function deleteDriver(counterdriver) {
@@ -154,4 +212,5 @@ function deleteDriver(counterdriver) {
 		)
 	}
 }
+
 

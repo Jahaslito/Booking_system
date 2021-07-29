@@ -183,9 +183,9 @@
 					</div>
 				</div>
     		</div>
-    <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 divide-x divide-gray-500
+    <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 md:divide-x md:divide-gray-500 sm:grid-cols-1
     ">
-    	<div class="pl-4 ml-2 justify-items-start w-1/2">
+    	<div class="pl-4 ml-2 justify-items-start w-1/2 sm:w-full">
 
     		<p class="text-gray-700 text-2xl font-medium mb-2">Trip Details</p>
 
@@ -214,7 +214,7 @@
     		<br>
     		<button onclick="tripModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mt-3 mb-6">Modify</button>
     	</div>
-    	<div class="mr-2 pl-6 justify-items-start w-1/2">
+    	<div class="mr-2 pl-6 justify-items-start w-1/2 sm:w-full">
     		<p class="text-gray-700 text-2xl font-medium mb-2">Payment Details</p>
             <ol class="list-decimal text-gray-700 text-base list-inside">
                 <li>Click the confirm payment button and a pop up page will appear</li>
@@ -321,6 +321,19 @@
         </div>
     </footer>
 <script src="{{url('/js/payment.js')}}"></script>
+<script>
+  $(document).ready(function() {
+  $(".nav-toggler").each(function(_, navToggler) {
+    var target = $(navToggler).data("target");
+    $(navToggler).on("click", function() {
+      $(target).animate({
+        height: "toggle"
+      });
+    });
+  });
+});
+
+</script>
 </body>
 </html>
 

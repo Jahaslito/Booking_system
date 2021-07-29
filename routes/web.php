@@ -82,12 +82,10 @@ Route::post('/buses', [BusController::class, 'store']);
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
 
-<<<<<<< HEAD
 Route::get('/trips/create',[TripController::class, 'create']);
 Route::post('/trips',[TripController::class,'store']);
 Route::post('/edit_trips',[TripController::class,'edit']);
 Route::post('/delete_trips',[TripController::class,'destroy']);
-=======
 Route::post('payment', [MpesaController::class,'stkpush']);
 
 //Route::get ( '/', function () {
@@ -110,5 +108,4 @@ Route::post('payment', [MpesaController::class,'stkpush']);
 
 Route::get('/searchTrip', [SearchController::class, 'index'])->name('searchTrip');
 Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('searchTrip');
->>>>>>> a470203825482f30e959cc501fdc234f785b4423
 

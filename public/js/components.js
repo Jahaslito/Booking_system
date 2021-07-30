@@ -136,6 +136,7 @@ function deleteBus(counter) {
 				data:{bus_id: busId},
 				success: function (result) {
 					alert("Bus deleted Successfully");
+					window.location.href="/adminviews/buses";
 				},
 				error: function (result) {
 					console.log(result);   
@@ -159,6 +160,7 @@ function deleteRoute(counter) {
 				data:{route_id: routeId},
 				success: function (result) {
 					alert("Route deleted Successfully");
+					window.location.href="/adminviews/routes";
 				},
 				error: function (result) {
 					alert("Make sure to remove all the buses assigned to this route before you delete the route")
@@ -182,6 +184,7 @@ function deleteTrip(counter)
 				data:{trip_id:tripId},
 				success: function (result) {
 					alert("Trip Deleted Successfully");
+					window.location.href="/adminviews/trips";
 				},
 				error: function (result) {
 					console.log(result);
@@ -204,6 +207,7 @@ function deleteDriver(counterdriver) {
 				data:{user_id: userId},
 				success: function (result) {
 					alert("Driver deleted Successfully");
+					window.location.href="/adminviews/drivers";
 				},
 				error: function (result) {
 					console.log(result);

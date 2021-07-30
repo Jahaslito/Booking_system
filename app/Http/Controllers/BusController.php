@@ -43,6 +43,7 @@ class BusController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'plate'=>'required',
             'capacity'=>'required',
@@ -50,6 +51,7 @@ class BusController extends Controller
             'route_id'=> 'required',
         ]
         );
+
         $bus = new Bus();
         $bus->number_plate=$request->plate;        
         $bus->capacity=$request->capacity;

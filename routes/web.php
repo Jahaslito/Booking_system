@@ -76,14 +76,16 @@ Route::post('/delete_routes', [RouteController::class, 'destroy']);
 Route::get('/adminviews/buses', [BusController::class, 'index']);
 Route::get('/buses/create', [BusController::class, 'create']);
 Route::post('/buses', [BusController::class, 'store']);
-Route::post('/edit_buses', [RouteController::class, 'edit']);
-Route::post('/delete_buses', [BusController::class, 'store']);
+Route::post('/edit_buses', [BusController::class, 'edit']);
+Route::post('/delete_buses', [BusController::class, 'destroy']);
 
 
 // Driver related codes
 Route::get('/adminviews/drivers', [DriverController::class, 'index'])->name('drivers');
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
+Route::post('/edit_drivers',[DriverController::class,'edit']);
+Route::post('/delete_drivers',[DriverController::class,'destroy']);
 
 // Trip related codes
 Route::get('/adminviews/trips', [TripController::class, 'trips'])->name('trips');

@@ -3,12 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
-<<<<<<< HEAD
-use App\Http\Controllers\TripController;
-=======
->>>>>>> a470203825482f30e959cc501fdc234f785b4423
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
@@ -40,53 +37,68 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-//Route::get('/login', [HomeController::class, 'login_register'])->name('login');
-//Route::resource('/adminviews/routes', 'RouteController');
-//Route::resource('routes', [\App\Http\Controllers\RouteController::class]);
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
-//goole
+
+//google authentication 
 Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
-//Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
-//Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
 //
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
-Route::get('/adminviews/drivers', [HomeController::class, 'drivers'])->name('drivers');
-Route::get('/adminviews/trips', [HomeController::class, 'trips'])->name('trips');
-//Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
-//Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
+
+
+
 Route::get('/booking', [HomeController::class, 'booking'])->name('booking');
 Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
-//Route::get('/booking',[BookingController::class, 'selectSeats']);
+
 Route::get('/booking', [RouteController::class, 'search']);
-//Route::get('/payment',[BookingController::class,'index']);
-//Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
-//Route::view('/selectSeat', 'customerViews.selectSeat');
+
 Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('selectSeat');
-//Route::get('/booking',[BookingController::class,'selectBus']);
-//Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
-Route::get('/adminviews/buses', 'App\Http\Controllers\BusController@index');
-Route::get('/adminviews/routes', 'App\Http\Controllers\RouteController@index');
 
 
 
+
+
+
+// Route related codes
+Route::get('/adminviews/routes', [RouteController::class, 'index']);
 Route::get('/routes/create', [RouteController::class, 'create']);
 Route::post('/routes', [RouteController::class, 'store']);
 
+// Bus related codes
+Route::get('/adminviews/buses', [BusController::class, 'index']);
 Route::get('/buses/create', [BusController::class, 'create']);
 Route::post('/buses', [BusController::class, 'store']);
+Route::post('/delete_buses', [BusController::class, 'store']);
 
+
+// Driver related codes
+Route::get('/adminviews/drivers', [DriverController::class, 'index'])->name('drivers');
 Route::get('/drivers/create', [DriverController::class, 'create']);
 Route::post('/drivers', [DriverController::class, 'store']);
 
+// Trip related codes
+Route::get('/adminviews/trips', [TripController::class, 'trips'])->name('trips');
 Route::get('/trips/create',[TripController::class, 'create']);
 Route::post('/trips',[TripController::class,'store']);
 Route::post('/edit_trips',[TripController::class,'edit']);
 Route::post('/delete_trips',[TripController::class,'destroy']);
+
+
 Route::post('payment', [MpesaController::class,'stkpush']);
+
+
+Route::get('/searchTrip', [SearchController::class, 'index'])->name('searchTrip');
+Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('searchTrip');
+
+
+
+// You will find all the commented codes down here. I don't know who commented what but everyone can find
+//whatever commented down here.... :)
 
 //Route::get ( '/', function () {
 //    return view ( 'welcome' );
@@ -105,7 +117,21 @@ Route::post('payment', [MpesaController::class,'stkpush']);
 //Route::get('/search','SearchController@index')->name('search');
 //Route::get('/search', 'SearchController@index')->name('search');;
 
+//Route::get('/booking',[BookingController::class,'selectBus']);
+//Route::get('/adminviews/drivers', 'App\Http\Controllers\DriverController@index');
 
-Route::get('/searchTrip', [SearchController::class, 'index'])->name('searchTrip');
-Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('searchTrip');
+//Route::get('/payment',[BookingController::class,'index']);
+//Route::get('/payment', ['as' => 'BookingController', 'uses' => 'BookingController@index']);
+//Route::view('/selectSeat', 'customerViews.selectSeat');
 
+//Route::get('/adminviews/routes', [HomeController::class, 'routes'])->name('routes');
+//Route::get('/adminviews/buses', [HomeController::class, 'buses'])->name('buses');
+
+//Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+//Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
+//Route::get('/booking',[BookingController::class, 'selectSeats']);
+
+//Route::get('/login', [HomeController::class, 'login_register'])->name('login');
+//Route::resource('/adminviews/routes', 'RouteController');
+//Route::resource('routes', [\App\Http\Controllers\RouteController::class]);

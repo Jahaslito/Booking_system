@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\driver;
+use App\Models\trip;
+use App\Models\bus;
+use App\Models\route;
 
 class HomeController extends Controller
 {
@@ -48,7 +52,8 @@ class HomeController extends Controller
 
     public function drivers()
     {
-        return view('adminviews.drivers');
+        $driver= Driver::all();
+        return view('adminviews.drivers',['driver'=>$driver]);
     }
 
     public function routes()
@@ -58,7 +63,8 @@ class HomeController extends Controller
 
     public function trips()
     {
-        return view('adminviews.trips');
+        $trip= Trip::all();
+        return view('adminviews.trips',['trip'=>$trip]);
     }
     public function booking()
     {

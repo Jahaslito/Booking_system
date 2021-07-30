@@ -88,16 +88,16 @@ Route::post('/edit_drivers',[DriverController::class,'edit']);
 Route::post('/delete_drivers',[DriverController::class,'destroy']);
 
 // Trip related codes
-Route::get('/adminviews/trips', [TripController::class, 'trips'])->name('trips');
+Route::get('/adminviews/trips', [TripController::class, 'index']);
 Route::get('/trips/create',[TripController::class, 'create']);
 Route::post('/trips',[TripController::class,'store']);
 Route::post('/edit_trips',[TripController::class,'edit']);
 Route::post('/delete_trips',[TripController::class,'destroy']);
 
-
+//payment related codes
 Route::post('payment', [MpesaController::class,'stkpush']);
 
-
+// Trip search realted codes
 Route::get('/searchTrip', [SearchController::class, 'index'])->name('searchTrip');
 Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('searchTrip');
 
@@ -105,6 +105,8 @@ Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('search
 
 // You will find all the commented codes down here. I don't know who commented what but everyone can find
 //whatever commented down here.... :)
+
+
 
 //Route::get ( '/', function () {
 //    return view ( 'welcome' );

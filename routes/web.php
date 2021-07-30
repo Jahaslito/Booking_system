@@ -68,11 +68,15 @@ Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('sele
 Route::get('/adminviews/routes', [RouteController::class, 'index']);
 Route::get('/routes/create', [RouteController::class, 'create']);
 Route::post('/routes', [RouteController::class, 'store']);
+Route::post('/edit_routes', [RouteController::class, 'edit']);
+Route::post('/delete_routes', [RouteController::class, 'destroy']);
+
 
 // Bus related codes
 Route::get('/adminviews/buses', [BusController::class, 'index']);
 Route::get('/buses/create', [BusController::class, 'create']);
 Route::post('/buses', [BusController::class, 'store']);
+Route::post('/edit_buses', [RouteController::class, 'edit']);
 Route::post('/delete_buses', [BusController::class, 'store']);
 
 

@@ -49,6 +49,7 @@ Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController:
 //
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
+Route::post('/edit_profile', [HomeController::class,'edit']);
 
 
 

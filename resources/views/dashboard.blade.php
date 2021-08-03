@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="box-border flex h-full mb-2">
-            <div class="w-1/5 p-3 ">
+            <div class="md:w-1/5 md:p-3">
                 <center>
                     <h1 class="text-3xl font-medium text-gray-50 cursor-default">Admin Name</h1>
                     <br>

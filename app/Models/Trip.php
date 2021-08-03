@@ -11,6 +11,10 @@ class Trip extends Model
         'id',
         'departure',
         'arrival',
+        'seats_available',
         'date',
+        'route_id',
+        'bus_id',
+        'driver_id'
     ];
 }

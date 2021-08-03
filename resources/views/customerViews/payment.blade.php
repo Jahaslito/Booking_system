@@ -30,33 +30,42 @@
         <i class="text-xl text-white fa fa-bars"></i>
       </button>
       <div
-        class="hidden w-full top-navbar lg:inline-flex lg:flex-grow lg:w-auto"
+        class="w-full top-navbar lg:inline-flex lg:flex-grow lg:w-auto"
         id="navigation"
       >
         <div
-          class="flex flex-col items-start w-full text-md lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center lg:h-auto"
+          class="flex flex-col items-start w-full text-md lg:inline-flex lg:flex-row lg:ml-auto lg:mr-14 lg:w-auto lg:items-center lg:h-auto"
         >
           <a
-            href="/home"
+            href="/"
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>Home</span>
           </a>
           <a
-            href="#"
+            href="{{ url('/aboutUs') }}"
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>About Us</span>
           </a>
-          <a
-            href="#"
-            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
-          >
-            <span>Contact Us</span>
-          </a>
+        </div>
+        <div class="flex items-center justify-center px-2 py-2 bg-red-600 rounded items-top hover:bg-red-800 hover:text-white dark:bg-gray-900 sm:items-center sm:pt-0">
+            @if (Route::has('login'))
+                <div class="text-center text-white text-md right-1 top-1 sm:block">
+                    @auth
+                        <a href="{{ url('/booking') }}" class="pb-4 text-sm text-white no-underline">Book</a>
+                    @else
+                        <a href="{{ route('login') }}" class="pb-4 text-sm text-white no-underline">Log in</a>
 
+                        <!-- @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif -->
+                    @endauth
+                </div>
+            @endif
         </div>
       </div>
+      
     </nav>
     <nav
         class="flex flex-col w-full px-6 py-2 mb-6 font-sans text-center bg-white sm:flex-row sm:text-left sm:justify-center sm:items-baseline">
@@ -112,7 +121,7 @@
 	                        </button>
 
 	                        <button value="modify"
-	                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Modify Details
+	                            class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Modify
 
                                 <script>
                                     var source = document.getElementById("source").value;
@@ -174,29 +183,24 @@
 					</div>
 				</div>
     		</div>
-    <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 divide-x divide-gray-500
+    <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 md:divide-x md:divide-gray-500 sm:grid-cols-1
     ">
-    	<div class="ml-2">
+    	<div class="pl-4 ml-2 justify-items-start w-1/2 sm:w-full">
 
-    		<h3>Trip Details</h3>
+    		<p class="text-gray-700 text-2xl font-medium mb-2">Trip Details</p>
 
-<th>
-
-
-            <th> <p> <b>Source:</b> {{ session()->get("source") }}</p>
-                <p> <b>Destination:</b> {{ session()->get("destination") }}</p>
-                <p> <b>Boarding place:</b> {{ session()->get("boarding_place") }}</p>
-                <p> <b>Date:</b> {{ session()->get("date") }}</p>
-                <p> <b>Time:</b> {{ session()->get("departure") }}</p>
-                <p> <b>Price:</b>
+            <th> <p class="mb-1"><span class="font-medium text-base">Source:</span> <span class="text-gray-700 text-base">{{ session()->get("source") }}</span></p>
+                <p class="mb-1"><span class="font-medium text-base">Destination:</span> {{ session()->get("destination") }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Boarding place:</span> {{ session()->get("boarding_place") }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Date:</span> {{ session()->get("date") }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Time:</span> {{ session()->get("departure") }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Price:</span>
                     <?php
                     $price = session()->get("price");
                     echo $price;
 
                     ?>
 {{--                    {{ session()->get("price") }}</p>--}}
-
-<button></button>
 
 {{--                <p>{{ session()->flush("price") }}</p>--}}
 {{--                <p> <b>Price:</b> {{ session()->get("price") }}</p>--}}
@@ -207,14 +211,22 @@
 {{--            <p> <b>Number of Seats:</b> <?php echo ($_SESSION['seatNumber']); ?> </p>--}}
             </th>
 
-
-
     		<br>
-    		<button onclick="tripModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Modify</button>
+    		<button onclick="tripModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mt-3 mb-6">Modify</button>
     	</div>
-    	<div class="pl-4">
-    		<h3>Payment Details</h3>
-    		<p></p>
+    	<div class="mr-2 pl-6 justify-items-start w-1/2 sm:w-full">
+    		<p class="text-gray-700 text-2xl font-medium mb-2">Payment Details</p>
+            <ol class="list-decimal text-gray-700 text-base list-inside">
+                <li>Click the confirm payment button and a pop up page will appear</li>
+                <li>Confirm the booking details</li>
+                <li>Enter the safaricom phone number you want to use to make the payment in the contact's field</li>
+                <li>Click the pay button</li>
+                <li>An Mpesa prompt for a payment will appear on your phone</li>
+                <li>Confirm the total price and the name of company</li>
+                <li>Put your MPesa PIN in the prompt and click ok</li>
+                <li>Wait for a notification to appear on the web application page regarding the payment</li>
+                
+            </ol>
     		<br>
     		<button onclick="paymentModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Confirm Payment</button>
     	</div>
@@ -309,6 +321,19 @@
         </div>
     </footer>
 <script src="{{url('/js/payment.js')}}"></script>
+<script>
+  $(document).ready(function() {
+  $(".nav-toggler").each(function(_, navToggler) {
+    var target = $(navToggler).data("target");
+    $(navToggler).on("click", function() {
+      $(target).animate({
+        height: "toggle"
+      });
+    });
+  });
+});
+
+</script>
 </body>
 </html>
 

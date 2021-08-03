@@ -15,7 +15,7 @@
 <body>
 	<nav class="flex flex-wrap items-center p-3 bg-red-600">
       <a href="/home" class="inline-flex items-center p-2 mr-4">
-        
+
         <span class="text-xl font-bold tracking-wide text-white uppercase"
           >Logo</span
         >
@@ -27,33 +27,43 @@
         <i class="text-xl text-white fa fa-bars"></i>
       </button>
       <div
-        class="hidden w-full top-navbar lg:inline-flex lg:flex-grow lg:w-auto"
+        class="w-full top-navbar lg:inline-flex lg:flex-grow lg:w-auto"
         id="navigation"
       >
         <div
-          class="flex flex-col items-start w-full text-md lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center lg:h-auto"
+          class="flex flex-col items-start w-full text-md lg:inline-flex lg:flex-row lg:ml-auto lg:mr-14 lg:w-auto lg:items-center lg:h-auto"
         >
           <a
-            href="/home"
+            href="/"
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>Home</span>
           </a>
           <a
-            href="#"
+            href="{{ url('/aboutUs') }}"
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>About Us</span>
           </a>
-          <a
-            href="#"
-            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
-          >
-            <span>Contact Us</span>
-          </a>
-          
+
+        </div>
+        <div class="flex items-center justify-center px-2 py-2 bg-red-600 rounded items-top hover:bg-red-800 hover:text-white dark:bg-gray-900 sm:items-center sm:pt-0">
+            @if (Route::has('login'))
+                <div class="text-center text-white text-md right-1 top-1 sm:block">
+                    @auth
+                        <a href="{{ url('/booking') }}" class="pb-4 text-sm text-white no-underline">Book</a>
+                    @else
+                        <a href="{{ route('login') }}" class="pb-4 text-sm text-white no-underline">Log in</a>
+
+                        <!-- @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif -->
+                    @endauth
+                </div>
+            @endif
         </div>
       </div>
+      
     </nav>
     <nav
         class="flex flex-col w-full px-6 py-2 mb-6 font-sans text-center bg-white sm:flex-row sm:text-left sm:justify-center sm:items-baseline">
@@ -180,5 +190,18 @@
             </div>
         </div>
     </footer>
+    <script>
+  $(document).ready(function() {
+  $(".nav-toggler").each(function(_, navToggler) {
+    var target = $(navToggler).data("target");
+    $(navToggler).on("click", function() {
+      $(target).animate({
+        height: "toggle"
+      });
+    });
+  });
+});
+
+</script>
 </body>
 </html>

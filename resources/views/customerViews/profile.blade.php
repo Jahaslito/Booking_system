@@ -13,6 +13,7 @@
 	<title>Profile</title>
 </head>
 <body>
+   
 	<nav class="flex flex-wrap items-center p-3 bg-red-600">
       <a href="/home" class="inline-flex items-center p-2 mr-4">
         
@@ -50,8 +51,7 @@
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>Contact Us</span>
-          </a>
-          
+          </a>       
         </div>
       </div>
     </nav>
@@ -72,26 +72,33 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </div>
+            <?php
+        $user= App\Models\User::all();
+    ?>
+<!-- the modal -->
+<form method="POST" action="/customerViews/profile">
+     @csrf
+
             <div class="grid grid-cols-6 gap-6 p-4">
                 <div class="col-span-6 sm:col-span-3 mt-2">
                     <label for="source" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" name="source" id="source" value="Jane Mbiru" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <input type="text" name="name" id="name" value="{{Auth::user()->name}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
-                    <label for="destination" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input type="text" name="destination" id="destination" value="+254 708 999 876" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <label for="phonenumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="text" name="phone_number" id="phonenumber" value="{{Auth::user()->phone_number}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
-                    <label for="destination" class="block text-sm font-medium text-gray-700">Nationality</label>
-                    <input type="text" name="destination" id="destination" value="Kenyan" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
+                    <input type="text" name="nationality" id="nationality" value="{{Auth::user()->nationality}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
-                    <label for="destination" class="block text-sm font-medium text-gray-700">Gender</label>
-                    <input type="text" name="destination" id="destination" value="Female" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                    <input type="text" name="gender" id="gender" value="{{Auth::user()->gender}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" >
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
                     <label for="date" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input type="date" name="date" id="date" value="12-05-2021" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <input type="date" name="dob" id="date" value="{{Auth::user()->date_of_birth}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" >
                 </div>
                                         
             </div>
@@ -107,46 +114,49 @@
 
                 </div>
             </div>
-            
+
         </div>        
     </div>
+</form>
+<!-- this is the view details -->
     <div class=" flex justify-center items-center">
         <div class="bg-white m-4 rounded p-4 shadow-md w-1/2">
             <center>
                 <p class="text-gray-700 text-3xl m-3 text-center">My Profile</p>
                 <div class="rounded-full h-28 w-28 flex items-center justify-center border-4 place-self-center overflow-hidden"><img src="{{url('/images/avatar.png')}}"></div>
             </center>
+            
             <div class=" gap-6 p-4">
                 <div class="col-span-6 sm:col-span-3 mt-2">
                     <label for="source" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" name="source" id="source" value="Jane Mbiru" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <input type="text" name="source" id="source" value="{{Auth::user()->name}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
-                    <label for="destination" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input type="text" name="destination" id="destination" value="+254 708 999 876" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <label for="phonenumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="text" name="phonenumber" id="phonenumber" value="{{Auth::user()->phone_number}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
-                    <label for="destination" class="block text-sm font-medium text-gray-700">Nationality</label>
-                    <input type="text" name="destination" id="destination" value="Kenyan" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
+                    <input type="text" name="nationality" id="nationality" value="{{Auth::user()->nationality}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
-                    <label for="destination" class="block text-sm font-medium text-gray-700">Gender</label>
-                    <input type="text" name="destination" id="destination" value="Female" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                    <input type="text" name="gender" id="gender" value="{{Auth::user()->gender}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
                 </div>
                 <div class="col-span-6 sm:col-span-3 mt-2">
                     <label for="date" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input type="text" name="date" id="date" value="12-05-2021" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
+                    <input type="text" name="date_of_birth" id="date" value="{{Auth::user()->date_of_birth}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" readonly>
                 </div>
                 <div class="flex justify-center items-center mt-4">
-                    <button onclick="profModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Edit Profile</button>
+                    <button type="button" onclick="profModal()" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75 mb-6">Edit Profile</button>
                 </div>
-                
+
                                         
             </div>
         </div>
         
     </div>
-    
+  
     
 	<footer class="pt-10 bg-gray-800 sm:mt-10">
         <div class="flex flex-wrap justify-center max-w-6xl m-auto text-gray-800">
@@ -238,5 +248,6 @@
         </div>
     </footer>
     <script src="{{url('/js/profile.js')}}"></script>
+
 </body>
 </html>

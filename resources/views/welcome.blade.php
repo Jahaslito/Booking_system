@@ -62,6 +62,12 @@
           >
             <span>Contact Us</span>
           </a>
+          <a
+            href="{{ url ('/profile') }}"
+            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
+          >
+            <span>My Profile</span>
+          </a> 
 
         </div>
         <div class="flex items-center justify-center px-2 py-2 bg-red-600 rounded items-top hover:bg-red-800 hover:text-white dark:bg-gray-900 sm:items-center sm:pt-0">

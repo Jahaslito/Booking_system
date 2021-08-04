@@ -8,6 +8,7 @@ use App\Http\Controllers\BusController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Drivercontroller;
 use App\Http\Controllers\Auth\GoogleController;
@@ -42,6 +43,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
 
+
+//Route::get('profile', function() { return view('customerViews.profile');});
+//Route::get('users/profile', UsersController::class,'UsersController@edit')->name('users.edit_profile');
+//Route::put('users/profile', 'UsersController@update')->name('users.update_profile');
+
+Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit'])->name('profile');
+Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+
+
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
 //google authentication 
 Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
@@ -61,7 +73,9 @@ Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('sele
 
 
 
-
+Route::post('/customerViews/profile', [UserController::class,'edit']);
+// Route::put('/customerViews/profile/{id}', [UserController::class,'Update']);
+Route::get('/customerViews/profile', [UserController::class,'index']);
 
 
 // Route related codes

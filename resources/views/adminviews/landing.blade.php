@@ -23,24 +23,35 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+					@php
+							$users=App\Models\user::all();
+							@endphp
+							
+							@foreach($users as $users)
+					<form action="/edit_profile" method="POST">
+					@csrf
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
+							
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="name" value="Jane Mbiru" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="name" id="name" value="{{$users->name}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
+						<div class="hide_data users_id">{{$users->id}}</div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-			                <input type="email" name="email" id="email" value="janembiru@gmail.com" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="email" id="email" value="{{$users->email}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="number" id="number" value="0709898989" readonly class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="number" id="number" value="{{$users->phone_number}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 												
 					</div>
 					<div class="flex justify-center items-center">
 						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>
 					</div>
+					</form>
+					@endforeach
 				</div>        
     		</div>
 			<div class="box-border p-2 m-1 bg-red-600 rounded-lg fixed inset-x-0 top-0">

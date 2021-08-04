@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+z<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -62,12 +62,7 @@
           >
             <span>Contact Us</span>
           </a>
-          <a
-            href="{{ url ('/profile') }}"
-            class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
-          >
-            <span>My Profile</span>
-          </a> 
+          
 
         </div>
         <div class="flex items-center justify-center px-2 py-2 bg-red-600 rounded items-top hover:bg-red-800 hover:text-white dark:bg-gray-900 sm:items-center sm:pt-0">
@@ -85,8 +80,21 @@
                 </div>
             @endif
         </div>
+        <div class="flex items-center justify-center px-2 py-2 bg-red-600 rounded items-top hover:bg-red-800 hover:text-white dark:bg-gray-900 sm:items-center sm:pt-0">
+            @if (Route::has('login'))
+                <div class="text-center text-white text-md right-1 top-1 sm:block">
+                    @auth
+                    <a  class="pb-4 text-sm text-white no-underline" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();" >Log Out</a>
+                    @endauth
+                </div>
+            @endif
+        </div>
+       
       </div>
-      
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
     </nav>
     <nav
             class="flex flex-col w-full px-6 py-2 mb-6 font-sans text-center bg-white sm:flex-row sm:text-left sm:justify-center sm:items-baseline">
@@ -103,8 +111,8 @@
             <div class="w-full h-full px-0 py-4 bg-black">
                 <div class="h-auto py-4 text-center">
 
-                <h1 class="h-0 text-2xl text-white lg:text-3xl">Welcome to Our Website</h1>
-                <h2 class="h-0 text-base text-white lg:space-y-0 lg:text-xl">We make booking easy, safe and fast</h2>
+                <h1 class="h-auto text-2xl text-white sm:h-0 lg:text-3xl">Welcome to Our Website</h1>
+                <h2 class="h-6 text-base text-white sm:h-0 lg:space-y-0 lg:text-xl">We make booking easy, safe and fast</h2>
                 <a href="{{ url('/booking') }}" class="items-center justify-center w-full px-3 py-2 text-white bg-red-600 rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white">
                     <span>BOOK NOW</span></a>
             
@@ -133,7 +141,7 @@
             <div class="content-center w-auto h-auto text-center ">
                 <h1>Our Accomplishments</h1>
                 <div class="content-center block m-auto sm:inline-block sm:space-y-5 md:space-y-0 md:flex md:flex-wrap justify-evenly">
-                    <div class="block w-56 px-4 py-3 text-center text-red-600 bg-white shadow-md ">
+                    <div class="block w-56 px-4 py-3 mx-auto text-center text-red-600 bg-white shadow-md ">
                         <h1 class="text-xs border-b border-gray-300 "> Customers</h1>
                         <div class="flex flex-row px-2 py-2 justify-evenly">
                            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 20 20" fill="currentColor">
@@ -142,21 +150,21 @@
                             <span class="text-4xl text-gray-700 ">1.2K</span>
                         </div>
                     </div>
-                    <div class="block w-56 px-4 py-3 text-center text-red-600 bg-white shadow-md ">
+                    <div class="block w-56 px-4 py-3 mx-auto text-center text-red-600 bg-white shadow-md ">
                         <h1 class="text-xs border-b border-gray-300">Buses</h1>
                         <div class="flex flex-row px-2 py-2 justify-evenly">
                             <img src="{{url('/icons/front-of-bus.png')}} "/>
                             <span class="text-4xl text-gray-700">350</span>
                         </div>
                     </div>
-                    <div class="block w-56 px-4 py-3 text-center text-red-600 bg-white shadow-md ">
+                    <div class="block w-56 px-4 py-3 mx-auto text-center text-red-600 bg-white shadow-md ">
                         <h1 class="text-xs border-b border-gray-300"> Distance</h1>
                         <div class="flex flex-row px-2 py-2 justify-evenly">
                             <img src="{{url('/icons/road.png')}} "/>
                             <span class="text-4xl text-gray-700">10k km</span>
                         </div>
                     </div>
-                    <div class="block w-56 px-4 py-3 text-center text-red-600 bg-white shadow-md ">
+                    <div class="block w-56 px-4 py-3 mx-auto text-center text-red-600 bg-white shadow-md ">
                         <h1 class="text-xs border-b border-gray-300"> Trips</h1>
                         <div class="flex flex-row px-2 py-2 justify-evenly">
                             <img src="{{url('/icons/direction.png')}} "/>
@@ -171,49 +179,58 @@
         </div>
         <div class="items-center content-center justify-center w-auto h-auto px-2 py-2 text-center bg-red-600">
             <div class="content-center w-auto h-auto px-4 py-3 text-center text-white ">
-                <h1 class="h-0">How does it work?</h1>
+                <h1 class="h-auto sm:h-0">How does it work?</h1>
                 <div class="content-center block px-2 py-2 space-y-4 md:space-y-0 md:flex md:flex-wrap justify-evenly">
-                    <div class="content-center block space-x-0 ">
-                        <div class="w-20 h-auto px-2 py-2 mb-4 text-center text-white border border-white rounded-full text-7xl">1</div>
-                        <div class=""><svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20" viewBox="0 0 20 20" fill="currentColor">
+                    <div class="flex flex-row content-center space-x-0 sm:block ">
+                        <div class="justify-start w-20 h-auto px-2 py-2 mb-4 text-center text-white border border-white rounded-full text-7xl">1</div>
+                        <div class="block mx-auto">
+                        <div><svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mx-auto" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd" />
 </svg></div>
                         <div class="text-4xl text-white"> <p>Book</p></div>
+                        </div>
                     </div>
-                     <div class="content-center block space-x-0 ">
-                        <div class="w-20 h-auto px-2 py-2 mb-4 text-center text-white border border-white rounded-full text-7xl ">2</div>
-                        <div><svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20" viewBox="0 0 20 20" fill="currentColor">
+                     <div class="flex flex-row content-center space-x-0 sm:block ">
+                        <div class="justify-start w-20 h-auto px-2 py-2 mb-4 text-center text-white border border-white rounded-full text-7xl ">2</div>
+                        <div class="block mx-auto">
+                        <div><svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mx-auto" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
 </svg></div>
                         <div class="text-4xl text-white"> <p>Pay</p></div>
+                        </div>
                     </div>
-                     <div class="content-center block space-x-0 ">
-                        <div class="w-20 h-auto px-2 py-2 mb-4 text-center text-white border border-white rounded-full text-7xl">3</div>
-                        <div><svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20" viewBox="0 0 20 20" fill="currentColor">
+                     <div class="flex flex-row content-center space-x-0 sm:block ">
+                        <div class="justify-start w-20 h-auto px-2 py-2 mb-4 text-center text-white border border-white rounded-full text-7xl">3</div>
+                        <div class="block mx-auto">
+                        <div><svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mx-auto" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
 </svg></div>
                         <div class="text-4xl text-center text-white"> <p>Travel</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="w-auto h-auto px-2 py-0 text-center ">
             <div class="px-4 py-2"> 
-            <h1 class="h-0" id="contact">Contact Us</h1>
-           <div class="flex flex-wrap justify-between w-auto h-full">
-                <div class="justify-start block w-1/2 px-8 py-8 text-white bg-red-600 shadow-lg">
+            <h1 class="h-6 sm:h-0" id="contact">Contact Us</h1>
+           <div class="justify-between block w-auto h-full sm:flex sm:flex-wrap">
+                <div class="justify-start block py-8 text-white bg-red-600 shadow-lg sm:w-1/2">
                             <p class="text-xl border-b">Our Number</p>
                             <br>
-                            <div class="inline-flex justify-between w-auto ">
-                                <img src="{{url('/icons/phone-call.png')}} "/>
-                                <p class="ml-4 text-xl">+254712345678 / +254787654321 </p>
+                            <div class="justify-between block w-auto md:inline-flex">
+                                <img src="{{url('/icons/phone-call.png')}}" class="mx-auto "/>
+                                <div class="block">
+                                    <p class="ml-4 text-xl">+254712345678</p>
+                                    <p class="ml-4 text-xl">+254712345678</p>
+                                </div>
                             </div>
                 </div> 
-                <div class="block w-1/2 px-8 py-8 text-white bg-gray-800 shadow-lg">
+                <div class="block py-8 text-white bg-gray-800 shadow-lg sm:w-1/2">
                     <p class="text-xl border-b">Our Email</p>
                     <br>
-                    <div class="inline-flex justify-between w-auto ">
-                        <img src="{{url('/icons/envelope.png')}} "/>
+                    <div class="justify-between block w-auto md:inline-flex">
+                        <img src="{{url('/icons/envelope.png')}} " class="mx-auto" />
                         <p class="ml-4 text-xl ">john.doe@example.com</p>
                     </div>
                 <br>

@@ -62,6 +62,21 @@
                 </div>
             @endif
         </div>
+        <div class="flex items-center justify-center px-2 py-2 bg-red-600 rounded items-top hover:bg-red-800 hover:text-white dark:bg-gray-900 sm:items-center sm:pt-0">
+          @if (Route::has('login'))
+              <div class="text-center text-white text-md right-1 top-1 sm:block">
+                  @auth
+                  <a  class="pb-4 text-sm text-white no-underline" href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();" >Log Out</a>
+                  @endauth
+              </div>
+          @endif
+      </div>
+     
+    </div>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+      @csrf
+  </form>
       </div>
       
     </nav>

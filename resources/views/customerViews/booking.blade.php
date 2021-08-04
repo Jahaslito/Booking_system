@@ -100,57 +100,77 @@
                 <div class="px-6 py-2 text-left">
                     <p class="text-xl text-white md:text-2xl">Book >> Pay >> Board</p>
                  </div>
-                    <form method="get" action="/booking" role="search">
-                        <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">
-                    <div class=" searchFrom">
-                            <select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                                placeholder="From">
-                            <option>From</option>
+{{--                    <form method="get" action="/booking" role="search">--}}
+{{--                        <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">--}}
+{{--                    <div class=" searchFrom">--}}
+{{--                            <select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
+{{--                                placeholder="From">--}}
+{{--                            <option>From</option>--}}
 
-                            @foreach($fromData as $row1)
-                                    <option name="searchSource" value="{{$row1->id}}">{{$row1->source}}</option>
+{{--                            @foreach($fromData as $row1)--}}
+{{--                                    <option name="searchSource" value="{{$row1->id}}">{{$row1->source}}</option>--}}
 
-                            @endforeach
-                        </select>
+{{--                            @endforeach--}}
+{{--                        </select>--}}
 
-                    </div>
-                    <div class="searchTo">
-                        <select name="" select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                                placeholder="To">
-                            <option>To</option>
-                            @foreach($toData as $row2)
-                                <option name="searchDestination" value="{{$row2->id}}">{{$row2->destination}}</option>
-                            @endforeach
-                        </select>
+{{--                    </div>--}}
+{{--                    <div class="searchTo">--}}
+{{--                        <select name="" select name="" class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
+{{--                                placeholder="To">--}}
+{{--                            <option>To</option>--}}
+{{--                            @foreach($toData as $row2)--}}
+{{--                                <option name="searchDestination" value="{{$row2->id}}">{{$row2->destination}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
 
-                    </div>
+{{--                    </div>--}}
 
-                    <div class="searchDate">
-                        <input type="Date"
-                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                        placeholder="Date" id="datefield"/>
-                            <script>
-                                var today = new Date();
-                                var dd = today.getDate();
-                                var mm = today.getMonth()+1; //January is 0!
-                                var yyyy = today.getFullYear();
-                                if(dd<10){
-                                        dd='0'+dd
-                                    }
-                                    if(mm<10){
-                                        mm='0'+mm
-                                    }
+{{--                    <div class="searchDate">--}}
+{{--                        <input type="Date"--}}
+{{--                        class="p-2 pl-8 bg-white border border-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"--}}
+{{--                        placeholder="Date" id="datefield"/>--}}
+{{--                            <script>--}}
+{{--                                var today = new Date();--}}
+{{--                                var dd = today.getDate();--}}
+{{--                                var mm = today.getMonth()+1; //January is 0!--}}
+{{--                                var yyyy = today.getFullYear();--}}
+{{--                                if(dd<10){--}}
+{{--                                        dd='0'+dd--}}
+{{--                                    }--}}
+{{--                                    if(mm<10){--}}
+{{--                                        mm='0'+mm--}}
+{{--                                    }--}}
 
-                                today = yyyy+'-'+mm+'-'+dd;
-                                document.getElementById("datefield").setAttribute("min", today);
-                        </script>
-                    </div>
-                    <div class="justify-center searchBus">
+{{--                                today = yyyy+'-'+mm+'-'+dd;--}}
+{{--                                document.getElementById("datefield").setAttribute("min", today);--}}
+{{--                        </script>--}}
+{{--                    </div>--}}
+{{--                    <div class="justify-center searchBus">--}}
+
+{{--                        <button class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search Bus</button>--}}
+
+{{--                    </div>--}}
+{{--                            </form>--}}
+
+                <form method="get" action="{{ route('searchTrip')}}">
+                    <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">--}}
+
+                        <div class=" searchFrom">
+                        <input type="Text" placeholder="From" style="padding: 10px;" name="source" id="source">
+                        </div>
+
+                        <div class=" searchTo">
+                            <input type="Text" placeholder="To" style="padding: 10px;" name="destination" id="destination">
+                        </div>
+
+                        <div class="justify-center searchBus">
 
                         <button class="p-2 pl-8 text-white bg-red-600 border rounded-sm hover:shadow-lg hover:bg-red-700 focus:border-transparent">Search Bus</button>
 
+                        </div>
                     </div>
-                            </form>
+
+                </form>
                 </div>
             </div>
 
@@ -158,7 +178,7 @@
         <div class="content-start w-auto h-auto px-0 sm:px-0 md:px-16 ">
             <div class="justify-center sm:px-0 md:px-16">
                 <div class="w-auto text-center md:content-center">
-                    <h1 class="mt-12 text-2xl sm:text-3xl ">Search Results</h1>
+                    <h1 class="mt-12 text-2xl sm:text-3xl ">Trips Available</h1>
                 </div>
                 @foreach($triproutes as $triproute)
 

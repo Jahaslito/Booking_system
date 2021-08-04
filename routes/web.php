@@ -40,6 +40,12 @@ Auth::routes();
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/welcome', function(){
+    return view('welcome');
+});
+Route::get('/profile', function(){
+    return view('customerViews.profile');
+});
 
 Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
 
@@ -61,12 +67,14 @@ Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController:
 //
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/adminviews/landing', [HomeController::class, 'landing'])->name('landing');
+Route::post('/edit_profile', [HomeController::class,'edit']);
 
 
 
 Route::get('/booking', [HomeController::class, 'booking'])->name('booking');
 Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 
+//booking
 Route::get('/booking', [RouteController::class, 'search']);
 
 Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('selectSeat');
@@ -118,7 +126,7 @@ Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('search
 
 
 // You will find all the commented codes down here. I don't know who commented what but everyone can find
-//whatever commented down here.... :)
+//whatever they commented down here.... :)
 
 
 

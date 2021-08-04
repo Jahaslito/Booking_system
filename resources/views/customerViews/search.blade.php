@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    <title>Booking</title>
+    <title>Booking - Search Results</title>
 </head>
 
 <body class="content-start w-full h-full p-px bg-gray-50">
@@ -79,7 +79,7 @@
             </div>
 
             <form method="get" action="{{ route('searchTrip')}}">
-                <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">--}}
+                <div class="content-center block w-auto space-y-5 sm:h-full sm:w-full md:justify-evenly sm:space-y-6 md:space-y-0 md:flex md:flex-row">
 
                     <div class=" searchFrom">
                         <input type="Text" placeholder="From" style="padding: 10px;" name="source" id="source">
@@ -107,19 +107,25 @@
             <h1 class="mt-12 text-2xl sm:text-3xl ">Search Results</h1>
         </div>
 
-        @foreach($tripsearch as $trip)
+        @foreach($tripsearch as $tripsearch)
 
             <form method="post" action="">
 
                 <div class="block w-auto h-auto p-8 space-y-4 bg-white shadow-lg sm:flex sm:flex-row sm:space-y-0">
                     <img src="{{url('/images/bus.jpg')}} " alt="Bus Image" class="hidden w-auto sm:block sm:h-24">
                     <div class="sm:ml-8 md:ml-16">
-                        <h2  class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">{{$trip->source}} - {{$trip->destination}}</h2>
+
+                        <h2  class="w-auto mb-4 text-xl sm:text-xl md:text-2xl">{{$source}} - {{$destination}}</h2>
                         <div class="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
                             <i class="w-6 pt-2 mx-1 text-red-600 fa fa-map-marker"></i>
                             <h3 class="text-red-600 sm:text-sm md:text-xl">Boarding Place</h3>
                         </div>
-                        <p name="boarding_place"> {{$trip->boarding_place}}</p>
+
+{{--                        @foreach($tripsearch as $tripsearch)--}}
+
+{{--                            @dd(get_defined_vars())--}}
+
+                        <p name="boarding_place"> {{$tripsearch->boarding_place}}</p>
 
 
                     </div>
@@ -129,28 +135,28 @@
                                 <i class="w-6 pt-1.5 mx-1 text-red-600 fa fa-hourglass-start"></i>
                                 <h4 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Time</h4>
                             </div>
-                            <p>{{$trip->departure}}</p>
+                            <p>{{$tripsearch->departure}}</p>
                         </div>
                         <div class="block pt-4">
                             <div class="flex flex-row md:mt-2 md:flex-auto md:flex-row-reverse">
                                 <i class="w-6 pt-1.5 mx-1 fa fa-calendar text-red-600"></i>
                                 <h5 class="text-base text-red-600 sm:text-sm md:text-xl">Departure Date</h5>
                             </div>
-                            <p>{{$trip->date}}</p>
+                            <p>{{$tripsearch->date}}</p>
                         </div>
                     </div>
                     <div class="content-center w-auto pt-4 sm:ml-10 md:ml-28 divide-y-12">
                         <h6 class="text-xl text-red-600 ">Price</h6>
-                        <p class="text-xl text-green-500">KES {{$trip->price}}</p>
+                        <p class="text-xl text-green-500">KES {{$tripsearch->price}}</p>
                     </div>
             </form>
 
-            {{ session()->put('source',$trip->source)}}
-            {{ session()->put('destination',$trip->destination)}}
-            {{ session()->put('boarding_place',$trip->boarding_place)}}
-            {{ session()->put('date',$trip->date)}}
-            {{ session()->put('departure',$trip->departure)}}
-            {{ session()->put('price',$trip->price)}}
+            {{ session()->put('source',$tripsearch->source)}}
+            {{ session()->put('destination',$tripsearch->destination)}}
+            {{ session()->put('boarding_place',$tripsearch->boarding_place)}}
+            {{ session()->put('date',$tripsearch->date)}}
+            {{ session()->put('departure',$tripsearch->departure)}}
+            {{ session()->put('price',$tripsearch->price)}}
 
 
             <div class="content-center pt-8 ml-12">
@@ -485,6 +491,8 @@
     </div>
 
     @endforeach
+
+        <h2>No more results found.</h2>
 
 </div>
 <div class="block w-full">

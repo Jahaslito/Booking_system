@@ -89,6 +89,7 @@ function editDriverModal(counterdriver) {
 }
 
 
+
 function closeEditModal(){
 	edit_modal.classList.remove('flex');
 	edit_modal.classList.add('hidden');

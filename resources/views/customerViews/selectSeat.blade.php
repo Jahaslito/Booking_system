@@ -44,8 +44,8 @@
                     @foreach($seats as $seat)
                     <div style="display:inline-block;width:5em; margin-right: 12em;" class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
                         <input type="checkbox" name="CheckBox[]" id="seatNumber[]" class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 checked:red background-color:red"
-                               value="{{$seat->seat_ID+1}}"><label class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 ">
-                        {{$seat->seat_ID+1}}</label>
+                               value="{{$seat->id+1}}"><label class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 ">
+                        {{$seat->id+1}}</label>
                         <div class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                         </div>
                     </div>

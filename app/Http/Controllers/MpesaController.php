@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MpesaController extends Controller
 {
@@ -70,7 +72,7 @@ class MpesaController extends Controller
             'PartyA' => $phoneNumber,
             'PartyB' => env('MPESA_STK_SHORTCODE'),
             'PhoneNumber' => $phoneNumber,
-            'CallBackURL' => 'https://378abf9b888e.ngrok.io/api/responseStkPush',
+            'CallBackURL' => 'https://a96d20ff7d59.ngrok.io/api/responseStkPush',
             'AccountReference' => 'Trial',
             'TransactionDesc' => 'Trial'
           );
@@ -79,6 +81,33 @@ class MpesaController extends Controller
 
         $response = $this->makeHttp($url, $curl_post_data);
 
+        //save the booking information in the database 
+        // $booking= new Booking();
+        // $booking->seat_number=$request->seat_number;
+        // $booking->ticket_number= $this->generateTicketNumber();
+        // $booking->user_id= Auth::id();
+        // $booking->save();
         return $response;
+    }
+    public function generateTicketNumber(){
+        //As a starting point, the length of the ticket number has six digits 
+        $ticketNumberDigit=6;
+        $booking= Booking::latest()->first();
+        $bookingId=$booking->id;
+        $bookingIdLength=strlen($bookingId);
+        if($bookingIdLength >= $ticketNumberDigit){
+            //If the system exhaust all the six digits, we are going to increase the digit by 4.
+            $ticketNumberDigit+=4;
+        }
+        $loopCounter= $ticketNumberDigit-$bookingIdLength;
+        $alphabetArray= array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+       
+        $generatedDummyLetters="";
+        for ($i=0; $i <$loopCounter; $i++) { 
+            $letterIndex=rand(0,25);
+            $generatedDummyLetters.=$alphabetArray[$letterIndex];
+        }
+        $finalGeneratedTicketNumber=$generatedDummyLetters.$bookingId;
+        return str_shuffle($finalGeneratedTicketNumber);
     }
 }

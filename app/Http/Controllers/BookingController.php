@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class BookingController extends Controller
 {
@@ -84,13 +85,28 @@ class BookingController extends Controller
         //
     }
 
-//    public function selectSeats(){
-//        $seats = DB::select('select * from buses');
-//        return view('customerViews.booking',compact('seats'));
-//    }
+    public function selectSeats(){
+        $seats = DB::select('select * from seats');
+        return view('customerViews.selectSeat',compact('seats'));
+    }
 
 //    public function selectBus(){
 //        $buses = DB::select('select * from buses');
 //        return view('customerViews.booking',compact('buses'));
+//    }
+
+//    public function find()
+//    {
+//        return view('customerViews.booking');
+//    }
+//    public function findSearch()
+//    {
+//        $searchSource = Input::get ( "searchSource" );
+//        $searchDestination = Input::get ( "searchDestination" );
+//        $test = Booking::where ( 'source', 'LIKE', '%' . $searchSource . '%' )->orWhere ( 'destination', 'LIKE', '%' . $searchDestination . '%' )->get ();
+//        if (count ( $test ) > 0)
+//            return view ( 'customerViews.booking' )->withDetails ( $test )->withQuery ( $searchSource,$searchDestination );
+//        else
+//            return view ( 'customerViews.booking' )->withMessage ( 'No Details found. Try to search again !' );
 //    }
 }

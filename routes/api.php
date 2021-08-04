@@ -20,4 +20,4 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::post('responseStkPush', [PaymentController::class, 'stkPush']);
 
-Route::any('responseStkPush', [PaymentController::class, 'stkPush']);
+// Route::any('responseStkPush', [PaymentController::class, 'stkPush']);

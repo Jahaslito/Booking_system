@@ -62,6 +62,7 @@ Route::post('/edit_profile', [HomeController::class,'edit']);
 Route::get('/booking', [HomeController::class, 'booking'])->name('booking');
 Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 
+//booking
 Route::get('/booking', [RouteController::class, 'search']);
 
 Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('selectSeat');

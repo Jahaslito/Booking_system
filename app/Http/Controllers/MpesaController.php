@@ -11,7 +11,7 @@ class MpesaController extends Controller
     //To access any mpesa api, we need to have a token
     public function getAccessToken(){
         $ch= curl_init('https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials');
-        curl_setopt($ch, CURLOPT_HTTPHEADER,['Authorization: Basic VkZUajNZbnJtMXE4SkZRQ3M4OEgxWmJjTHZTTWtHOWY6cm1BS0hpanp6SExGTnNqYw ']);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,['Authorization: Basic VWdpUkJBTXZ5RzRsZTZndFRHSmNyc0hJNEdId0pYTFc6dVp6aHZieVBnYlFOdHlNTA==']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         $response = json_decode(curl_exec($ch));
         curl_close($ch);
@@ -70,7 +70,7 @@ class MpesaController extends Controller
             'PartyA' => $phoneNumber,
             'PartyB' => env('MPESA_STK_SHORTCODE'),
             'PhoneNumber' => $phoneNumber,
-            'CallBackURL' => 'https://07fb20345703.ngrok.io/api/responseStkPush',
+            'CallBackURL' => 'https://378abf9b888e.ngrok.io/api/responseStkPush',
             'AccountReference' => 'Trial',
             'TransactionDesc' => 'Trial'
           );

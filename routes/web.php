@@ -39,6 +39,12 @@ Auth::routes();
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/welcome', function(){
+    return view('welcome');
+});
+Route::get('/profile', function(){
+    return view('customerViews.profile');
+});
 
 Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
 
@@ -105,7 +111,7 @@ Route::get('/searchTrip', [SearchController::class, 'tripSearch'])->name('search
 
 
 // You will find all the commented codes down here. I don't know who commented what but everyone can find
-//whatever commented down here.... :)
+//whatever they commented down here.... :)
 
 
 

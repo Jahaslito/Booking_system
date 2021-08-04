@@ -17,6 +17,8 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->integer('seat_number');
             $table->string('ticket_number');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('trip_id')->references('id')->on('trips');
             $table->timestamps();
         });
     }

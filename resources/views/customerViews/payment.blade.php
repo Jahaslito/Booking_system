@@ -148,17 +148,24 @@
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
+                    @php
+                        $user= Auth::user();
+                        $userName= $user->name;
+                        $userContact=$user->phone_number;
+                        $userContact=ltrim($userContact,$userContact[0]);
+                        $userContact="254".$userContact;
+                    @endphp
                     <div class="w-auto">
                         <p class="text-center">Change contact if it is not the number paying for the booking</p>
                     </div>
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input readonly type="text" name="name" id="name" value="Jane Mbosso" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input readonly type="text" name="name" id="name" value="{{$userName}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
-			                <input type="text" name="contact" id="contact" value="0723565657" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="contact" id="contact" value="{{$userContact}}" placeholder="Start with 254" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="no_of_seats" class="block text-sm font-medium text-gray-700">Number of Seats</label>

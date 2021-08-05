@@ -185,9 +185,12 @@ $phoneNumber= '254'.$phoneNumber;
             <th> <p class="mb-1"><span class="font-medium text-base">Source:</span> <span class="text-gray-700 text-base">{{ $triproutes->source }}</span></p>
                 <p class="mb-1"><span class="font-medium text-base">Destination:</span> {{ $triproutes->destination }}</p>
                 {{-- <p class="mb-1"> <span class="font-medium text-base">Boarding place:</span> {{ session()->get("boarding_place") }}</p> --}}
-                <p class="mb-1"> <span class="font-medium text-base">Date:</span> {{ $triproutes->date }}</p>
-                <p class="mb-1"> <span class="font-medium text-base">Time:</span> {{ $triproutes->departure }}</p>
-                <p class="mb-1"> <span class="font-medium text-base">Price:</span>{{ ($triproutes->price)*session()->get('no_selected_seats') }}
+                <p class="mb-1"> <span class="font-medium text-base">Departure Date:</span> {{ $triproutes->date }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Departure Time:</span> {{ $triproutes->departure }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Seat Number:</span> @php foreach ($selectedSeats as $seatNumber) {
+                    echo $seatNumber.' ,';
+                }@endphp</p>
+                <p class="mb-1"> <span class="font-medium text-base">Price: </span>{{ ($triproutes->price)*session()->get('no_selected_seats') }}ksh
                
                 {{--                    {{ session()->get("price") }}</p>--}}
 

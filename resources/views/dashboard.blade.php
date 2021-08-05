@@ -25,7 +25,7 @@
         <div class="box-border flex h-full mb-2">
             <div class="md:w-1/5 md:p-3">
                 <center>
-                    <h1 class="text-3xl font-medium text-gray-50 cursor-default">Admin Name</h1>
+                    <h1 class="text-3xl font-medium text-gray-50 cursor-default">Test Admin</h1>
                     <br>
                     <div class="rounded-full h-24 w-24 flex items-center justify-center border-4 justify-self-center overflow-hidden"><img src="{{url('/images/avatar.png')}}"></div>
                 </center>  

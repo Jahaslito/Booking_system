@@ -93,26 +93,14 @@
     <div class="bg-white rounded shadow-lg m-4 p-3 px-4">
       <p class="text-gray-700 text-xl m-2 text-center text-3xl">About Us</p>
       <div class="text-gray-700 text-base">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+       <p>Launched in 2004, we are a privately owned intercity bus line, located in Nairobi City. Tickets start at just Ksh.1500, providing daily transportation between Nairobi and suburban towns like Nakuru, Kisumu, Eldoret, Kisii and Kakamega. A safe and secure bus service. We provide all the necessary luxuries like bathrooms, wi-fi, wide leather seats, more legroom, fewer passengers per bus and friendly drivers.
+        </p>
         <br>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Launched in 2004, we are a privately owned intercity bus line, located in Nairobi City. Tickets start at just Ksh.1500, providing daily transportation between Nairobi and suburban towns like Nakuru, Kisumu, Eldoret, Kisii and Kakamega. A safe and secure bus service. We provide all the necessary luxuries like bathrooms, wi-fi, wide leather seats, more legroom, fewer passengers per bus and friendly drivers.
+        </p>
         <br>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Launched in 2004, we are a privately owned intercity bus line, located in Nairobi City. Tickets start at just Ksh.1500, providing daily transportation between Nairobi and suburban towns like Nakuru, Kisumu, Eldoret, Kisii and Kakamega. A safe and secure bus service. We provide all the necessary luxuries like bathrooms, wi-fi, wide leather seats, more legroom, fewer passengers per bus and friendly drivers.
+        </p>
       </div>
     </div>
 

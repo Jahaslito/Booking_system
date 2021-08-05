@@ -58,7 +58,7 @@ class GoogleController extends Controller
 
             // Auth::($newUser, true);
         }
-        return redirect()->to('/dashboard');
+        return redirect()->to('/');
     }
 }
       /*try {

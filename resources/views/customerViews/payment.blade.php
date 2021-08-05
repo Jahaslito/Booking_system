@@ -117,6 +117,17 @@
 {{--					</div>--}}
 {{--				</div>--}}
 {{--    		</div>--}}
+@php
+$trip_id= session()->get("trip_id");
+
+$triproutes = DB::select('select trips.id, trips.departure, trips.arrival, trips.date, routes.source, routes.destination, routes.boarding_place, routes.price,routes.price from routes inner join trips on routes.id = trips.route_id where trips.id = ?',[$trip_id]);
+$triproutes= $triproutes[0];
+$numberOfSeats=session()->get('no_selected_seats');
+$selectedSeats=session()->get('selected_seats');
+$phoneNumber=Auth::user()->phone_number;
+$phoneNumber= ltrim($phoneNumber, $phoneNumber[0]);
+$phoneNumber= '254'.$phoneNumber;
+@endphp
 
     		<div id="payment_modal" class="fixed top-0 bottom-0 left-0 right-0 z-50 hidden items-center justify-center overflow-auto text-gray-500 bg-black bg-opacity-40">
 				<div class="bg-gray-50 p-3 rounded-lg">
@@ -132,21 +143,24 @@
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input readonly type="text" name="name" id="name" value="Jane Mbosso" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input readonly type="text" name="name" id="name" value="{{Auth::user()->name}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
-			                <input type="text" name="contact" id="contact" value="0740182052" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="contact" id="contact" placeholder="start with 254" value="{{$phoneNumber}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="no_of_seats" class="block text-sm font-medium text-gray-700">Number of Seats</label>
-			                <input readonly type="number" name="no_of_seats" id="no_of_seats" value="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input readonly type="number" name="no_of_seats" id="no_of_seats" value="{{$numberOfSeats}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
 			            <div class="col-span-6 sm:col-span-3">
 			                <label for="price" class="block text-sm font-medium text-gray-700">Total Price</label>
-			                <input readonly type="number" name="price" id="price" value="4500" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input readonly type="number" name="price" id="price" value="{{($triproutes->price)*session()->get('no_selected_seats')}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
 			            </div>
-
+                        <div class="col-span-6 sm:col-span-3">
+                            <p id="message"></p>    
+                        </div>
+                            
 					</div>
 					<div class="flex justify-center items-center">
 						<div class="flex flex-row space-x-5 text-right sm:justify-center">
@@ -164,19 +178,17 @@
     <div class="items-center block w-auto pt-10 pb-10 pl-16 bg-white rounded-lg shadow-lg md:bg-gray-800 md:pt-0 md:pb-0 bg-opacity-30 md:justify-center md:content-start md:flex grid grid-cols-2 gap-2 m-4 p-2 md:divide-x md:divide-gray-500 sm:grid-cols-1
     ">
         <div class="pl-4 ml-2 justify-items-start w-1/2 sm:w-full">
+           
 
             <p class="text-gray-700 text-2xl font-medium mb-2">Trip Details</p>
 
-            <th> <p class="mb-1"><span class="font-medium text-base">Source:</span> <span class="text-gray-700 text-base">{{ session()->get("source") }}</span></p>
-                <p class="mb-1"><span class="font-medium text-base">Destination:</span> {{ session()->get("destination") }}</p>
+            <th> <p class="mb-1"><span class="font-medium text-base">Source:</span> <span class="text-gray-700 text-base">{{ $triproutes->source }}</span></p>
+                <p class="mb-1"><span class="font-medium text-base">Destination:</span> {{ $triproutes->destination }}</p>
                 {{-- <p class="mb-1"> <span class="font-medium text-base">Boarding place:</span> {{ session()->get("boarding_place") }}</p> --}}
-                <p class="mb-1"> <span class="font-medium text-base">Date:</span> {{ session()->get("date") }}</p>
-                <p class="mb-1"> <span class="font-medium text-base">Time:</span> {{ session()->get("departure") }}</p>
-                <p class="mb-1"> <span class="font-medium text-base">Price:</span>
-                <?php
-                $price = session()->get("price");
-                echo $price;
-                ?>
+                <p class="mb-1"> <span class="font-medium text-base">Date:</span> {{ $triproutes->date }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Time:</span> {{ $triproutes->departure }}</p>
+                <p class="mb-1"> <span class="font-medium text-base">Price:</span>{{ ($triproutes->price)*session()->get('no_selected_seats') }}
+               
                 {{--                    {{ session()->get("price") }}</p>--}}
 
                 {{--                <p>{{ session()->flush("price") }}</p>--}}

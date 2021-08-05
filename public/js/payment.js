@@ -42,18 +42,28 @@ $(document).ready(function () {
 		event.preventDefault();
 		console.log("pay button is clicked!");
 		let phoneNumber= $("#contact").val();
+		let price= $("#price").val();
 		console.log("Phone Number: "+ phoneNumber);
+		$('#message').html('Check your phone');
 		$.ajax(
 			{
 				url: '/payment',
 				method: 'post',
-				data:{phoneNumber: phoneNumber},
+				data:{
+					  phoneNumber: phoneNumber,
+					  price:price
+					},
 				success: function (result) {
-					console.log("result:\n");
-					console.log(result);
+					$('#message').html('');
+					let ticketNumbers;
+					for (let i = 0; i < result.length; i++) {
+						ticketNumbers= result[i]+'\r\n';
+					}
+					alert("Trip is successfully booked. Your ticket number: \r\n"+ticketNumbers);
+					document.location.href="/";
 				},
 				error: function (result) {
-					console.log(result);   
+					alert("Sorry system is currently under maintenance.");
 				}
 			}
 		)

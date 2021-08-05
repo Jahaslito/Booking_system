@@ -19,6 +19,7 @@
      x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
 
     <div x-show="showModal"
+    style="height: fit-content; margin-top:140px; padding-top:30px;"
          class="w-auto h-full p-6 bg-white shadow-2xl rounded-xl sm:w-10/12"
          @click.away="showModal = false"
          x-transition:enter="transition ease duration-100 transform"
@@ -39,11 +40,12 @@
                         <div class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
                         </div>
                     </div>
-                    <form action="/payment" method="post">
-
+                    <form action="/payment_page" method="get">
+                    
                     @foreach($seats as $seat)
+                    @php $value=$seat->id+1; @endphp
                     <div style="display:inline-block;width:5em; margin-right: 12em;" class="block w-10 text-gray-300 bg-transparent border-4 border-t-0 border-gray-400 border-solid rounded-sm focus:outline-none focus:ring-0 ">
-                        <input type="checkbox" name="CheckBox[]" id="seatNumber[]" class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 checked:red background-color:red"
+                        <input type="checkbox" name="CheckBox{{$value}}" id="seatNumber[]" class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 checked:red background-color:red"
                                value="{{$seat->id+1}}"><label class="w-8 font-bold text-gray-500 border-0 rounded-sm bg-gray-50 focus:bg-red-600 focus:text-gray-100 ">
                         {{$seat->id+1}}</label>
                         <div class="w-6 ml-1 border-4 border-t-0 border-l-0 border-r-0 border-gray-400 border-solid rounded-sm">
@@ -136,17 +138,19 @@
 
 
         <div class="flex flex-row space-x-5 text-right sm:justify-center">
-            <form action="/booking" method="get">
+            {{-- <form action="/booking" method="get"> --}}
                 <button @click="showModal = !showModal"
                     class="w-auto h-10 px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cancel
-                </button></form>
-            <form action="/payment" method="get">
+                </button>
+            {{-- </form> --}}
+            {{-- <form action="/payment_page" method="get"> --}}
                 {{--                                <button type="submit" class="w-20 h-auto text-xs font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-xl focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Continue</button>--}}
 
                 <button type="submit" class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500" required>Select
                     Seat</button>
-            </form>
-        </div></form>
+            {{-- </form> --}}
+        </div>
+    </form>
 
 </body>
 </html>

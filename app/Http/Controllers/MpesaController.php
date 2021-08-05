@@ -55,6 +55,7 @@ class MpesaController extends Controller
 
     public function stkpush(Request $request){
         $phoneNumber= $request->phoneNumber;
+        $price= $request->price;
 
         $timestamp = date('YmdHis');
         /*
@@ -68,7 +69,7 @@ class MpesaController extends Controller
             'Password' => $password,
             'Timestamp' => $timestamp,
             'TransactionType' => 'CustomerPayBillOnline',
-            'Amount' => '1',
+            'Amount' => $price,
             'PartyA' => $phoneNumber,
             'PartyB' => env('MPESA_STK_SHORTCODE'),
             'PhoneNumber' => $phoneNumber,
@@ -81,19 +82,32 @@ class MpesaController extends Controller
 
         $response = $this->makeHttp($url, $curl_post_data);
 
+        sleep(10);
         //save the booking information in the database 
-        // $booking= new Booking();
-        // $booking->seat_number=$request->seat_number;
-        // $booking->ticket_number= $this->generateTicketNumber();
-        // $booking->user_id= Auth::id();
-        // $booking->save();
-        return $response;
+        $numberOfSeats=session()->get('no_selected_seats');
+        $seatsSelected=session()->get('selected_seats');
+        $tripId=session()->get('trip_id');
+        $ticketNumberArray=array();
+        for ($i=0; $i <$numberOfSeats; $i++) { 
+            $booking= new Booking();
+            $booking->seat_number=$seatsSelected[$i];
+            $booking->trip_id=$tripId;
+            $booking->ticket_number= $this->generateTicketNumber();
+            array_push($ticketNumberArray,$this->generateTicketNumber());
+            $booking->user_id= Auth::id();
+            $booking->save();
+        }
+        
+        return $ticketNumberArray;
     }
     public function generateTicketNumber(){
         //As a starting point, the length of the ticket number has six digits 
         $ticketNumberDigit=6;
         $booking= Booking::latest()->first();
+        $bookingId=0;
+        if($booking){
         $bookingId=$booking->id;
+        }
         $bookingIdLength=strlen($bookingId);
         if($bookingIdLength >= $ticketNumberDigit){
             //If the system exhaust all the six digits, we are going to increase the digit by 4.

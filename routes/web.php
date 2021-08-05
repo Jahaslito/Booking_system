@@ -78,7 +78,7 @@ Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 Route::get('/booking', [RouteController::class, 'search']);
 
 Route::get('/selectSeat', [BookingController::class, 'selectSeats'])->name('selectSeat');
-
+Route::get('/payment_page', [BookingController::class, 'payment_page'])->name('payment_page');
 
 
 Route::post('/customerViews/profile', [UserController::class,'edit']);

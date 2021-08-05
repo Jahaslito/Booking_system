@@ -255,7 +255,7 @@
 
 
                             <form action="/selectSeat" method="get">
-
+                                <input type="text" name="trip_id" value="{{$triproute->id}}" style="display: none;">
                             <button class="px-4 py-2 text-sm font-bold text-white transition-colors duration-150 ease-linear scale-90 bg-red-600 border rounded-l focus:outline-none focus:ring-0 hover:bg-red-700 hover:shadow-md focus:bg-red-300 focus:text-red-500">Select
                                 Seat</button>
                             </form>

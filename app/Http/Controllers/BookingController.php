@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Trip;
 use Symfony\Component\Console\Input\Input;
 
 class BookingController extends Controller
@@ -85,9 +86,28 @@ class BookingController extends Controller
         //
     }
 
-    public function selectSeats(){
+    public function selectSeats(Request $request){
+        $trip= Trip::find($request->trip_id);
+        session()->put('trip_id',$request->trip_id);
         $seats = DB::select('select * from seats');
-        return view('customerViews.selectSeat',compact('seats'));
+        session()->put('total_seats',count($seats));
+        return view('customerViews.selectSeat',['seats'=>$seats,'trip'=>$trip]);
+    }
+
+    public function payment_page(Request $request){
+        $selected_seats=array();
+       $counter= session()->get("total_seats")+1;
+       for ($i=2; $i <= $counter; $i++) {
+           $key='CheckBox'.$i; 
+           
+           if($request->has($key)){
+            array_push($selected_seats,$i);
+           }
+       }
+      
+       session()->put('no_selected_seats',count($selected_seats));
+       session()->put('selected_seats',$selected_seats);
+       return view('customerViews.payment');
     }
 
 //    public function selectBus(){

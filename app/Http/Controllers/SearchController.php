@@ -41,7 +41,7 @@ class SearchController extends Controller
         $source = $_GET['source'];
         $destination = $_GET['destination'];
 
-        $tripsearch = DB::select('select trips.departure, trips.arrival, trips.date, routes.source, routes.destination, routes.boarding_place, routes.price,routes.price from routes inner join trips on routes.id = trips.route_id where routes.source=? and routes.destination=?',[$source,$destination]);
+        $tripsearch = DB::select('select trips.id, trips.departure, trips.arrival, trips.date, routes.source, routes.destination, routes.boarding_place, routes.price, routes.price from routes inner join trips on routes.id = trips.route_id where routes.source=? and routes.destination=?',[$source,$destination]);
         // dd($tripsearch);
         return view('customerViews.search',compact('source','destination','tripsearch'));
     }

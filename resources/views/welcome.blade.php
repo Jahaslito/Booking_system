@@ -1,4 +1,4 @@
-z<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -62,6 +62,12 @@ z<!DOCTYPE html>
           >
             <span>Contact Us</span>
           </a>
+          <a
+          href="/customerViews/profile"
+          class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
+        >
+          <span>Edit Profile</span>
+        </a>
           
 
         </div>

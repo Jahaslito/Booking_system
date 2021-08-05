@@ -35,13 +35,13 @@
           class="flex flex-col items-start w-full text-md lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center lg:h-auto"
         >
           <a
-            href="/home"
+            href="/"
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>Home</span>
           </a>
           <a
-            href="#"
+            href="/aboutUs"
             class="items-center justify-center w-full px-3 py-2 text-white rounded lg:inline-flex lg:w-auto hover:bg-red-800 hover:text-white"
           >
             <span>About Us</span>
